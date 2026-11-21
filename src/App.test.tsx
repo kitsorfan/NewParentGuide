@@ -55,7 +55,7 @@ describe('App shell', () => {
     expect(screen.getByRole('button', { name: 'English' })).toHaveAttribute('aria-pressed', 'true')
   })
 
-  it('opens and closes the mobile menu', async () => {
+  it('opens and closes the mobile menu, moving focus in and back out', async () => {
     const user = userEvent.setup()
     renderWithI18n(<App />, 'en')
     const menuButton = screen.getByRole('button', { name: en.menuOpen })
@@ -63,9 +63,14 @@ describe('App shell', () => {
 
     await user.click(menuButton)
     expect(menuButton).toHaveAttribute('aria-expanded', 'true')
+    const sidebar = document.getElementById('sidebar')
+    expect(sidebar).toContainElement(document.activeElement as HTMLElement)
+    expect(document.getElementById('main-content')).toHaveAttribute('inert')
 
     await user.keyboard('{Escape}')
     expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+    expect(menuButton).toHaveFocus()
+    expect(document.getElementById('main-content')).not.toHaveAttribute('inert')
   })
 })
 

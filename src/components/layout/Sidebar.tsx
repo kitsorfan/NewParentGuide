@@ -1,5 +1,6 @@
 import { Printer, X } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { useI18n } from '../../i18n/useI18n'
 import { PAGES, routeHref, type PageId, type Route } from '../../router/routes'
 import { scrollToSection } from '../../router/useRoute'
@@ -23,7 +24,8 @@ interface Props {
   readonly sections: readonly NavSection[]
   readonly activeSection: string | undefined
   readonly open: boolean
-  readonly onClose: () => void
+  /** `restoreFocus` is true when the menu is dismissed rather than left via a link. */
+  readonly onClose: (restoreFocus?: boolean) => void
   readonly theme: Theme
   readonly onThemeChange: (theme: Theme) => void
 }
@@ -39,6 +41,12 @@ export function Sidebar({
   onThemeChange,
 }: Props) {
   const { t } = useI18n()
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  // When the mobile drawer opens, move focus into it.
+  useEffect(() => {
+    if (open) closeButtonRef.current?.focus({ preventScroll: true })
+  }, [open])
 
   /** Clicking the link of the section you're already on doesn't fire `hashchange`; scroll anyway. */
   const onNavigate = (page: PageId, section?: string) => {
@@ -68,7 +76,12 @@ export function Sidebar({
             <span className="brand__tagline">{t.brandTagline}</span>
           </span>
         </a>
-        <button type="button" className="icon-button sidebar__close" onClick={onClose}>
+        <button
+          ref={closeButtonRef}
+          type="button"
+          className="icon-button sidebar__close"
+          onClick={() => onClose(true)}
+        >
           <X aria-hidden="true" size={20} />
           <span className="visually-hidden">{t.menuClose}</span>
         </button>

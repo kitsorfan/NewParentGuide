@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Footer } from './components/layout/Footer'
 import { Sidebar } from './components/layout/Sidebar'
 import { TopBar } from './components/layout/TopBar'
@@ -19,6 +19,8 @@ import { useRoute } from './router/useRoute'
 import { useTheme } from './theme/useTheme'
 
 const SIDEBAR_ID = 'sidebar'
+/** Matches the CSS breakpoint where the sidebar becomes a fixed column. */
+const DESKTOP_QUERY = '(min-width: 1024px)'
 
 interface Props {
   /** "Today", injectable for tests. */
@@ -37,6 +39,8 @@ export function App({ today: todayOverride }: Props) {
   const [filters, setFilters] = useState<ItemFilters>(DEFAULT_FILTERS)
   const [birthDate, setBirthDate] = useBirthDate()
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const restoreFocusRef = useRef(false)
   const [theme, setTheme] = useTheme()
 
   const visible = useMemo(
@@ -50,11 +54,34 @@ export function App({ today: todayOverride }: Props) {
     document.title = `${t.nav[route.page]} · ${t.brand}`
   }, [route.page, t])
 
+  /** Closes the mobile menu; when dismissed (not by following a link), focus returns to its button. */
+  const closeMenu = useCallback((restoreFocus = false) => {
+    restoreFocusRef.current = restoreFocus
+    setMenuOpen(false)
+  }, [])
+
+  // After the re-render, once the top bar is no longer inert.
+  useEffect(() => {
+    if (menuOpen || !restoreFocusRef.current) return
+    restoreFocusRef.current = false
+    menuButtonRef.current?.focus()
+  }, [menuOpen])
+
   useEffect(() => {
     if (!menuOpen) return
-    const onKeyDown = (event: KeyboardEvent) => event.key === 'Escape' && setMenuOpen(false)
+    const onKeyDown = (event: KeyboardEvent) => event.key === 'Escape' && closeMenu(true)
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen, closeMenu])
+
+  // The drawer only exists on small screens: close it if the window grows to desktop width.
+  useEffect(() => {
+    if (!menuOpen || typeof window.matchMedia !== 'function') return
+    const desktop = window.matchMedia(DESKTOP_QUERY)
+    const onChange = () => desktop.matches && setMenuOpen(false)
+    onChange()
+    desktop.addEventListener('change', onChange)
+    return () => desktop.removeEventListener('change', onChange)
   }, [menuOpen])
 
   const dateProps = { birthDate, onBirthDateChange: setBirthDate, today }
@@ -64,6 +91,7 @@ export function App({ today: todayOverride }: Props) {
       <a
         className="skip-link"
         href="#main-content"
+        inert={menuOpen}
         onClick={(event) => {
           // A plain `#main-content` would be read as a route; move focus instead.
           event.preventDefault()
@@ -77,6 +105,7 @@ export function App({ today: todayOverride }: Props) {
         page={route.page}
         menuOpen={menuOpen}
         sidebarId={SIDEBAR_ID}
+        menuButtonRef={menuButtonRef}
         onOpenMenu={() => setMenuOpen(true)}
       />
 
@@ -86,7 +115,7 @@ export function App({ today: todayOverride }: Props) {
         sections={sections}
         activeSection={activeSection}
         open={menuOpen}
-        onClose={() => setMenuOpen(false)}
+        onClose={closeMenu}
         theme={theme}
         onThemeChange={setTheme}
       />
@@ -96,11 +125,12 @@ export function App({ today: todayOverride }: Props) {
           className="backdrop"
           tabIndex={-1}
           aria-label={t.menuClose}
-          onClick={() => setMenuOpen(false)}
+          onClick={() => closeMenu(true)}
         />
       )}
 
-      <main id="main-content" className="main" tabIndex={-1}>
+      {/* While the drawer is open, keep keyboard and screen-reader focus inside it. */}
+      <main id="main-content" className="main" tabIndex={-1} inert={menuOpen}>
         <div className="main__inner" data-page={route.page}>
           {route.page === 'checklist' && (
             <ChecklistPage
