@@ -13,6 +13,33 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Baby_Crib_(49935766018).jpg',
   },
+  'crib-mattress': {
+    file: 'images/items/crib-mattress.webp',
+    title: 'FreeON Sleepy Στρώμα Foam Κούνιας 60x120x8cm 3294',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2162505973/freeon-sleepy-stroma-foam-kounias-60x120x8cm-3294.html',
+  },
+  'mattress-protector': {
+    file: 'images/items/mattress-protector.webp',
+    title: 'Viopros Αδιάβροχο Βρεφικό Επίστρωμα Κούνιας 100% Βαμβακερό Πετσετέ 120x60+20cm',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2163681825/viopros-adiavrocho-vrefiko-epistroma-kounias-100pct-vamvakero-petsete-120x60-plus-20cm.html',
+  },
+  'fitted-sheets': {
+    file: 'images/items/fitted-sheets.webp',
+    title: 'Lorelli Βρεφικό Σεντόνι Κούνιας με Λάστιχο 60x120+15 Uni Blue',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2164530911/lorelli-vrefiko-sentoni-kounias-me-lasticho-60x120-plus-15-uni-blue.html',
+  },
   'sleeping-bag': {
     file: 'images/items/sleeping-bag.webp',
     title: 'Schlafsack Baby',
@@ -37,6 +64,25 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
     sourceUrl: 'https://stocksnap.io/photo/baby-crib-SITUKGWGWJ',
   },
+  'bassinet-mattress': {
+    file: 'images/items/bassinet-mattress.webp',
+    title: 'Greco Strom Έκτωρ Στρώμα Foam Λίκνου 50x90cm VLI.EKT.ANT.000',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2155976031/greco-strom-ektor-stroma-foam-liknou-50x90cm-vli-ekt-ant-000.html',
+  },
+  'bassinet-sheets': {
+    file: 'images/items/bassinet-sheets.webp',
+    title:
+      'Dimcol Βρεφικό Σεντόνι Λίκνου / Καλαθούνας Βαμβακερό 80x110 Whimsical Mountainside 588 White Grey',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2163990413/dimcol-vrefiko-sentoni-liknou-kalathounas-vamvakero-80x110-whimsical-mountainside-588-white-grey.html',
+  },
   'baby-monitor': {
     file: 'images/items/baby-monitor.webp',
     title: 'Baby Monitor',
@@ -52,6 +98,15 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     license: 'CC BY-NC-SA 2.0',
     licenseUrl: 'https://creativecommons.org/licenses/by-nc-sa/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/78755281@N00/51820894946',
+  },
+  'white-noise': {
+    file: 'images/items/white-noise.webp',
+    title: 'Cangaroo Φορητή Συσκευή Λευκών Ήχων με Φως',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2160375148/cangaroo-foriti-syskeyi-leykon-ichon-me-fos.html',
   },
   'travel-system': {
     file: 'images/items/travel-system.webp',
@@ -77,6 +132,32 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/lisa-parker/5625503274/',
   },
+  'baby-carrier': {
+    file: 'images/items/baby-carrier.webp',
+    title: 'Pure Baby Love Cross & Go Μάρσιπος Γκρι',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl: 'https://www.bestprice.gr/item/2159162632/pure-baby-love-cross-go-marsipos-gri.html',
+  },
+  footmuff: {
+    file: 'images/items/footmuff.webp',
+    title: 'Interbaby Universal Ποδόσακος Καροτσιού Panda Luna Rosa 10078-02',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2157171136/interbaby-universal-podosakos-karotsiou-panda-luna-rosa-10078-02.html',
+  },
+  'isofix-base': {
+    file: 'images/items/isofix-base.webp',
+    title: 'Cybex Base Z Βάση Καθίσματος Αυτοκινήτου Isofix Μαύρη',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2165056400/cybex-base-z-vasi-kathismatos-aftokinitou-isofix-mavri.html',
+  },
   bottles: {
     file: 'images/items/bottles.webp',
     title: 'Baby Bottle',
@@ -84,6 +165,15 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     license: 'CC0 1.0',
     licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
     sourceUrl: 'https://stocksnap.io/photo/baby-bottle-G9JKX5JNKH',
+  },
+  'bottle-brush': {
+    file: 'images/items/bottle-brush.webp',
+    title: 'Chicco Βούρτσα Καθαρισμού Μπιμπερό Γαλάζια A10-69189-20',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2163703721/chicco-vourtsa-katharismou-mpimpero-galazia-a10-69189-20.html',
   },
   muslins: {
     file: 'images/items/muslins.webp',
@@ -93,6 +183,15 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/licenses/by-nc/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/8113246@N02/51876537284',
   },
+  sterilizer: {
+    file: 'images/items/sterilizer.webp',
+    title: 'Philips Avent Βρεφικός Αποστειρωτής Μπιμπερό Ηλεκτρικός SCF291/00',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2156704680/philips-avent-vrefikos-aposteirotis-mpimpero-ilektrikos-scf291-00.html',
+  },
   teats: {
     file: 'images/items/teats.webp',
     title: 'Silicone Baby Bottle Nipples',
@@ -100,6 +199,15 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     license: 'CC BY-SA 4.0',
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Silicone_Baby_Bottle_Nipples.jpg',
+  },
+  'nursing-pillow': {
+    file: 'images/items/nursing-pillow.webp',
+    title: 'Doomoo Comfy Big Tetra Μαξιλάρι Θηλασμού Εγκυμοσύνης & Relax Πράσινο Mint 190cm',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2160150841/doomoo-comfy-big-tetra-maxilari-thilasmou-egymosynis-relax-prasino-mint-190cm.html',
   },
   'breast-pump': {
     file: 'images/items/breast-pump.webp',
@@ -116,6 +224,23 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     license: 'CC0 1.0',
     licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
     sourceUrl: 'https://www.flickr.com/photos/184594136@N08/51330399988',
+  },
+  'pacifier-case': {
+    file: 'images/items/pacifier-case.webp',
+    title: 'Cangaroo θήκη πιπίλας',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl: 'https://www.bestprice.gr/cat/6285/pipiles-aksesouar.html',
+  },
+  'bottle-warmer': {
+    file: 'images/items/bottle-warmer.webp',
+    title: 'Philips Avent SCF358/00 Θερμαντήρας Μπιμπερό & Βρεφικής Τροφής',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2156192417/philips-avent-scf358-00-thermantiras-mpimpero-vrefikis-trofis.html',
   },
   'milk-storage-bags': {
     file: 'images/items/milk-storage-bags.webp',
@@ -141,6 +266,15 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/striatic/3439832117/',
   },
+  diapers: {
+    file: 'images/items/diapers.webp',
+    title: 'Pampers Premium Care Πάνες No1 2-5kg 50τμχ',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2158535609/pampers-premium-care-panes-no1-2-5kg-50tmch.html',
+  },
   wipes: {
     file: 'images/items/wipes.webp',
     title: 'Baby wipes',
@@ -157,6 +291,61 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/licenses/by-nc-sa/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/100193876@N06/52313678572',
   },
+  'changing-pad': {
+    file: 'images/items/changing-pad.webp',
+    title: 'Cangaroo Hello Baby Σκληρή Αλλαξιέρα Μωρού Πλαστική 80x50cm Μπεζ',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2160760016/cangaroo-hello-baby-skliri-allaxiera-morou-plastiki-80x50cm-mpez.html',
+  },
+  cotton: {
+    file: 'images/items/cotton.webp',
+    title: 'Hansaplast Υδρόφιλο Βαμβάκι Pre-Cut 100gr',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2163355314/hansaplast-ydrofilo-vamvaki-pre-cut-100gr.html',
+  },
+  'changing-table': {
+    file: 'images/items/changing-table.webp',
+    title: 'Casababy Juno Βρεφική Συρταριέρα Μπεζ 115x51x88cm',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2159965392/casababy-juno-vrefiki-syrtariera-mpez-115x51x88cm.html',
+  },
+  'diaper-bin': {
+    file: 'images/items/diaper-bin.webp',
+    title: 'Απλός κάδος με πεντάλ (BestPrice)',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/cat/2330/kalathakia-mpaniou.html?q=%CE%BA%CE%AC%CE%B4%CE%BF%CF%82+%CE%B1%CF%80%CE%BF%CF%81%CF%81%CE%B9%CE%BC%CE%BC%CE%AC%CF%84%CF%89%CE%BD+%CE%BC%CE%B5+%CF%80%CE%B5%CE%BD%CF%84%CE%AC%CE%BB+5+%CE%BB%CE%AF%CF%84%CF%81%CE%B1+%CE%BB%CE%B5%CF%85%CE%BA%CF%8C%CF%82&from=search-single-category',
+  },
+  'hooded-towels': {
+    file: 'images/items/hooded-towels.webp',
+    title: 'Cangaroo Manny Βρεφικό Μπουρνούζι Κάπα Γκρι 76x76cm',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2164455704/cangaroo-manny-vrefiko-mpournouzi-kapa-gri-76x76cm.html',
+  },
+  'baby-wash': {
+    file: 'images/items/baby-wash.webp',
+    title:
+      'Agnotis Baby Βρεφικό Σαμπουάν & Αφρόλουτρο Καλέντουλα Λεβάντα & Χαμομήλι με Αντλία 400ml',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2155759503/agnotis-baby-vrefiko-sampouan-afroloutro-kalentoula-levanta-chamomili-me-antlia-400ml.html',
+  },
   'nail-kit': {
     file: 'images/items/nail-kit.webp',
     title: 'momma clippers and baby clippers',
@@ -165,6 +354,23 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/45040421@N06/50768892856',
   },
+  bathtub: {
+    file: 'images/items/bathtub.webp',
+    title: 'Shnuggle Μπανάκι Μωρού Γκρι',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl: 'https://www.bestprice.gr/item/2157687908/shnuggle-mpanaki-morou-gri.html',
+  },
+  'bath-thermometer': {
+    file: 'images/items/bath-thermometer.webp',
+    title: 'Philips Θερμόμετρο Μπάνιου Avent SCH480/20',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2156230777/philips-thermometro-mpaniou-avent-sch480-20.html',
+  },
   washcloths: {
     file: 'images/items/washcloths.webp',
     title: 'Knit Washcloths',
@@ -172,6 +378,15 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     license: 'CC BY 2.0',
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/40740324@N08/51831994126',
+  },
+  'bath-support': {
+    file: 'images/items/bath-support.webp',
+    title: 'Just Baby Αντιολισθητικό Καθισματάκι Μπάνιου Μωρού Γαλάζιο',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2157698254/just-baby-antiolisthitiko-kathismataki-mpaniou-morou-galazio.html',
   },
   'brush-comb': {
     file: 'images/items/brush-comb.webp',
@@ -197,6 +412,51 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/83136374@N05/51825721879',
   },
+  'nasal-aspirator': {
+    file: 'images/items/nasal-aspirator.webp',
+    title: 'Otrisalin Συσκευή Ρινικής Απόφραξης + 2 Ανταλλακτικά',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2154736661/otrisalin-syskeyi-rinikis-apofraxis-plus-2-antallaktika.html',
+  },
+  saline: {
+    file: 'images/items/saline.webp',
+    title: 'Demo Rinophar Φυσιολογικός Ορός 30x5ml',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2154919830/demo-rinophar-fysiologikos-oros-30x5ml.html',
+  },
+  paracetamol: {
+    file: 'images/items/paracetamol.webp',
+    title: 'Advert for Calpol Infant Suspensions',
+    creator: 'Wellcome Collection',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Advert_for_Calpol_Infant_Suspensions_Wellcome_L0071116.jpg',
+  },
+  'vitamin-d': {
+    file: 'images/items/vitamin-d.webp',
+    title: 'BioGaia Protectis Baby & Vitamin D Προβιοτικά για Βρέφη 5ml',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2154551784/biogaia-protectis-baby-vitamin-d-proviotika-gia-vrefi-5ml.html',
+  },
+  'first-aid': {
+    file: 'images/items/first-aid.webp',
+    title: 'Alfashield Αποστειρωμένες Γάζες 36x40cm 10τμχ',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2158983670/alfashield-aposteiromenes-gazes-36x40cm-10tmch.html',
+  },
   humidifier: {
     file: 'images/items/humidifier.webp',
     title: 'Humidifier',
@@ -204,6 +464,24 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     license: 'CC BY 2.0',
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/ajay_suresh/51260595296/',
+  },
+  bodysuits: {
+    file: 'images/items/bodysuits.webp',
+    title: 'Prenatal Βρεφικά Κορμάκια Πακέτο x5 με Αρκουδάκια για Αγόρι',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2165061400/prenatal-vrefika-kormakia-paketo-x5-me-arkoudakia-gia-agori.html',
+  },
+  sleepsuits: {
+    file: 'images/items/sleepsuits.webp',
+    title: 'Pretty Baby Φορμάκι Μακρυμάνικο για Αγόρι Βελουτέ Μπλε 35781',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2158084076/pretty-baby-formaki-makrymaniko-gia-agori-veloute-mple-35781.html',
   },
   socks: {
     file: 'images/items/socks.webp',
@@ -222,6 +500,15 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     sourceUrl:
       'https://collection.sciencemuseumgroup.org.uk/objects/co8610608/hand-knitted-hat-made-for-premature-baby-sophie-proud',
   },
+  mittens: {
+    file: 'images/items/mittens.webp',
+    title: 'Γαντάκια νεογέννητου (BestPrice)',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/search?q=%CE%B3%CE%B1%CE%BD%CF%84%CE%AC%CE%BA%CE%B9%CE%B1+%CE%BD%CE%B5%CE%BF%CE%B3%CE%AD%CE%BD%CE%BD%CE%B7%CF%84%CE%BF%CF%85+%CE%B2%CE%B1%CE%BC%CE%B2%CE%B1%CE%BA%CE%B5%CF%81%CE%AC',
+  },
   cardigans: {
     file: 'images/items/cardigans.webp',
     title: 'Baby Sweater',
@@ -229,6 +516,15 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     license: 'CC BY-NC-SA 2.0',
     licenseUrl: 'https://creativecommons.org/licenses/by-nc-sa/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/79953041@N00/51822647496',
+  },
+  'pram-suit': {
+    file: 'images/items/pram-suit.webp',
+    title: 'Domina Pink Baby Φόρμα Εξόδου με Κουκούλα 8060218',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2165055046/domina-pink-baby-forma-exodou-me-koukoula-8060218.html',
   },
   blankets: {
     file: 'images/items/blankets.webp',
@@ -246,6 +542,33 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
     sourceUrl: 'https://stocksnap.io/photo/baby-clothes-Q2NLOOVQBU',
   },
+  'maternity-pads': {
+    file: 'images/items/maternity-pads.webp',
+    title: 'Akuku Postpartum Pads Σερβιέτες Λοχείας με Φτερά 3.5 Σταγόνες 10τμχ',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2159335198/akuku-postpartum-pads-servietes-locheias-me-ftera-3-5-stagones-10tmch.html',
+  },
+  'postpartum-underwear': {
+    file: 'images/items/postpartum-underwear.webp',
+    title: 'BabyJem Εσώρουχα Λοχείας Μιας Χρήσης 3τμχ',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2163358763/babyjem-esoroucha-locheias-mias-chrisis-3tmch.html',
+  },
+  'nursing-bra': {
+    file: 'images/items/nursing-bra.webp',
+    title: 'Σουτιέν θηλασμού (BestPrice)',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/search?q=%CF%83%CE%BF%CF%85%CF%84%CE%B9%CE%AD%CE%BD+%CE%B8%CE%B7%CE%BB%CE%B1%CF%83%CE%BC%CE%BF%CF%8D+%CF%87%CF%89%CF%81%CE%AF%CF%82+%CE%BC%CF%80%CE%B1%CE%BD%CE%AD%CE%BB%CE%B1',
+  },
   'nursing-pads': {
     file: 'images/items/nursing-pads.webp',
     title: 'Superbottom Ikat Chevron - Dry Feel Nursing Pads',
@@ -253,6 +576,50 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     license: 'CC BY 2.0',
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
     sourceUrl: 'https://www.flickr.com/photos/188318271@N05/51746776730',
+  },
+  'nipple-cream': {
+    file: 'images/items/nipple-cream.webp',
+    title: 'Lansinoh HPA Lanolin Κρέμα για Θηλές 40ml',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2158763220/lansinoh-hpa-lanolin-krema-gia-thiles-40ml.html',
+  },
+  'contrast-cards': {
+    file: 'images/items/contrast-cards.webp',
+    title: 'Banana Panda Κάρτες Υψηλής Αντίθεσης BP76276',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2160137868/banana-panda-kartes-ypsilis-antithesis-bp76276.html',
+  },
+  bouncer: {
+    file: 'images/items/bouncer.webp',
+    title: 'Cangaroo Cloud Premium Relax Μωρού Κούνια με Μουσική Γκρι',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2160004165/cangaroo-cloud-premium-relax-morou-kounia-me-mousiki-gri.html',
+  },
+  'play-gym': {
+    file: 'images/items/play-gym.webp',
+    title: 'Baby To Love Βρεφικό Γυμναστήριο Δραστηριοτήτων Ocean',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.bestprice.gr/item/2160225792/baby-to-love-vrefiko-gymnastirio-drastiriotiton-ocean.html',
+  },
+  mobile: {
+    file: 'images/items/mobile.webp',
+    title: 'AriaTrade Μουσικό Μόμπιλε Κούνιας',
+    creator: 'BestPrice.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl: 'https://www.bestprice.gr/item/2159140572/ariatrade-mousiko-mompile-kounias.html',
   },
   rattles: {
     file: 'images/items/rattles.webp',
