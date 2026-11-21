@@ -7,6 +7,17 @@ export default defineConfig({
   // Relative base so the build works on any GitHub Pages path
   // (https://<user>.github.io/<repo>/) without hard-coding the repo name.
   base: './',
+  build: {
+    rolldownOptions: {
+      output: {
+        // Libraries change far less often than the guide's content: a separate chunk stays cached
+        // across content updates, and keeps the app chunk under Vite's 500 kB warning.
+        codeSplitting: {
+          groups: [{ name: 'vendor', test: /[\\/]node_modules[\\/]/ }],
+        },
+      },
+    },
+  },
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
