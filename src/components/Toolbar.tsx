@@ -62,15 +62,6 @@ export function Toolbar({ filters, onChange, visibleCount, totalCount }: Props) 
         <span className="switch__track" aria-hidden="true" />
         <span>{t.hideOwned}</span>
       </label>
-      <label className="switch">
-        <input
-          type="checkbox"
-          checked={filters.onlyReference}
-          onChange={(event) => onChange({ ...filters, onlyReference: event.target.checked })}
-        />
-        <span className="switch__track" aria-hidden="true" />
-        <span>{t.onlyReference}</span>
-      </label>
 
       <div className="toolbar__end">
         <p className="toolbar__count" aria-live="polite">

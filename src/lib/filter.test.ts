@@ -49,7 +49,7 @@ describe('filterItems', () => {
     ])
   })
 
-  it('hides owned items and keeps only reference items on request', () => {
+  it('hides owned items on request', () => {
     const owned = new Set(['bottles'])
     const visible = filterItems(
       items,
@@ -57,9 +57,6 @@ describe('filterItems', () => {
       { owned, references },
     )
     expect(ids(visible)).not.toContain('bottles')
-
-    const onlyReference = filterItems(items, { ...DEFAULT_FILTERS, onlyReference: true }, noneOwned)
-    expect(onlyReference).toHaveLength(references.size)
   })
 })
 

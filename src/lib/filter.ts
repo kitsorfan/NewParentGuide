@@ -6,14 +6,12 @@ export interface ItemFilters {
   /** Empty means "all priorities". */
   readonly priorities: readonly Priority[]
   readonly hideOwned: boolean
-  readonly onlyReference: boolean
 }
 
 export const DEFAULT_FILTERS: ItemFilters = {
   query: '',
   priorities: [],
   hideOwned: false,
-  onlyReference: false,
 }
 
 export interface FilterContext {
@@ -22,12 +20,7 @@ export interface FilterContext {
 }
 
 export function isFiltering(filters: ItemFilters): boolean {
-  return (
-    filters.query.trim() !== '' ||
-    filters.priorities.length > 0 ||
-    filters.hideOwned ||
-    filters.onlyReference
-  )
+  return filters.query.trim() !== '' || filters.priorities.length > 0 || filters.hideOwned
 }
 
 /** Searches both languages, the Greek search term and the reference product name. */
@@ -54,7 +47,6 @@ export function filterItems(
   return items.filter((item) => {
     if (filters.priorities.length > 0 && !filters.priorities.includes(item.priority)) return false
     if (filters.hideOwned && owned.has(item.id)) return false
-    if (filters.onlyReference && !references.has(item.id)) return false
     return matchesQuery(item, filters.query, references.get(item.id))
   })
 }
