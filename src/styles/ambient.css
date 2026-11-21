@@ -1,0 +1,453 @@
+/*
+ * Ambient nursery backdrop (see src/components/layout/AmbientBackground.tsx).
+ *
+ * A fixed layer behind the page: a soft colour wash, four slowly drifting pastel glows, baby
+ * motifs that bob, drift and twinkle, and a few bath bubbles rising. Everything moves on long,
+ * out-of-step cycles so it reads as atmosphere, not animation.
+ *
+ *   light – pastel morning nursery
+ *   dark  – dusky lilac/indigo night sky instead of flat black
+ *   night – dim amber stars, moon and clouds only (low blue light for night feeds)
+ *
+ * Motif colours are opaque (pre-mixed with the background) so overlapping parts of a shape
+ * never double up.
+ */
+
+.ambient {
+  --amb-scale: 1;
+  /* Width of the loop that `wander` motifs trace. */
+  --amb-wander: 130px;
+
+  /* Pastel, pre-softened towards the page so text on top stays easy to read. */
+  --amb-pink: light-dark(
+    color-mix(in srgb, #f5c4d5 78%, var(--bg)),
+    color-mix(in srgb, #f093b3 25%, var(--bg))
+  );
+  --amb-peach: light-dark(
+    color-mix(in srgb, #f9d3b8 78%, var(--bg)),
+    color-mix(in srgb, #f4b38c 23%, var(--bg))
+  );
+  --amb-mint: light-dark(
+    color-mix(in srgb, #bfe4d4 78%, var(--bg)),
+    color-mix(in srgb, #7fd6bb 21%, var(--bg))
+  );
+  --amb-sky: light-dark(
+    color-mix(in srgb, #bfd7f0 78%, var(--bg)),
+    color-mix(in srgb, #8db8ec 23%, var(--bg))
+  );
+  --amb-lilac: light-dark(
+    color-mix(in srgb, #d8caf0 78%, var(--bg)),
+    color-mix(in srgb, #b8a1ee 25%, var(--bg))
+  );
+  --amb-butter: light-dark(
+    color-mix(in srgb, #f6dc8f 85%, var(--bg)),
+    color-mix(in srgb, #f1d27e 24%, var(--bg))
+  );
+
+  --amb-wash: light-dark(rgb(255 236 243 / 75%), rgb(72 58 140 / 24%));
+  --amb-glow-1: light-dark(rgb(247 190 210 / 55%), rgb(240 147 179 / 14%));
+  --amb-glow-2: light-dark(rgb(206 208 248 / 55%), rgb(160 130 235 / 15%));
+  --amb-glow-3: light-dark(rgb(190 230 214 / 55%), rgb(110 205 180 / 9%));
+  --amb-glow-4: light-dark(rgb(251 214 186 / 50%), rgb(110 150 230 / 11%));
+
+  /*
+   * Light: a pale blue soap bubble. Dark: no fill at all (a tinted disc turns muddy grey on a dark
+   * page), just a luminous rainbow rim, a soft glow and a bright glint.
+   */
+  --amb-bubble-edge: light-dark(rgb(140 172 222 / 45%), rgb(255 255 255 / 16%));
+  --amb-bubble-shine: light-dark(rgb(255 255 255 / 95%), rgb(255 255 255 / 75%));
+  --amb-bubble-tint: light-dark(rgb(190 214 246 / 40%), transparent);
+  --amb-bubble-glow: light-dark(transparent, rgb(214 190 255 / 22%));
+  /* Only the alpha matters: how strongly the rainbow film shows. */
+  --amb-bubble-film: light-dark(rgb(0 0 0 / 90%), rgb(0 0 0 / 80%));
+
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+/* The desktop sidebar is opaque, so only paint behind the main column. */
+@media (min-width: 1024px) {
+  .ambient {
+    left: var(--sidebar-width);
+  }
+}
+
+:root[data-theme='night'] .ambient {
+  --amb-pink: #3b2717;
+  --amb-peach: #3d2a16;
+  --amb-mint: #2e2514;
+  --amb-sky: #271d11;
+  --amb-lilac: #34261a;
+  --amb-butter: #4a3519;
+
+  --amb-wash: rgb(70 42 18 / 28%);
+  --amb-glow-1: rgb(217 135 79 / 7%);
+  --amb-glow-2: rgb(190 120 60 / 6%);
+  --amb-glow-3: rgb(160 100 50 / 4%);
+  --amb-glow-4: rgb(217 135 79 / 5%);
+}
+
+/* ---------- Wash and glows ---------- */
+
+.ambient__wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--amb-wash) 0%, transparent 55%);
+}
+
+.ambient__glow {
+  position: absolute;
+  width: 62vmax;
+  height: 62vmax;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--glow), transparent);
+  will-change: transform;
+  animation: ease-in-out infinite alternate;
+}
+
+.ambient__glow--1 {
+  --glow: var(--amb-glow-1);
+  top: -24vmax;
+  left: -20vmax;
+  animation-name: amb-glow-1;
+  animation-duration: 46s;
+}
+
+.ambient__glow--2 {
+  --glow: var(--amb-glow-2);
+  top: -18vmax;
+  right: -24vmax;
+  animation-name: amb-glow-2;
+  animation-duration: 58s;
+}
+
+.ambient__glow--3 {
+  --glow: var(--amb-glow-3);
+  bottom: -30vmax;
+  left: -6vmax;
+  animation-name: amb-glow-3;
+  animation-duration: 52s;
+}
+
+.ambient__glow--4 {
+  --glow: var(--amb-glow-4);
+  right: -16vmax;
+  bottom: -28vmax;
+  animation-name: amb-glow-4;
+  animation-duration: 64s;
+}
+
+@keyframes amb-glow-1 {
+  to {
+    transform: translate3d(14vw, 12vh, 0) scale(1.15);
+  }
+}
+
+@keyframes amb-glow-2 {
+  to {
+    transform: translate3d(-16vw, 16vh, 0) scale(0.9);
+  }
+}
+
+@keyframes amb-glow-3 {
+  to {
+    transform: translate3d(18vw, -12vh, 0) scale(1.2);
+  }
+}
+
+@keyframes amb-glow-4 {
+  to {
+    transform: translate3d(-12vw, -16vh, 0) scale(1.1);
+  }
+}
+
+/* ---------- Motifs ---------- */
+
+.ambient__motif {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: calc(var(--size) * var(--amb-scale));
+  height: calc(var(--size) * var(--amb-scale));
+  overflow: visible;
+  transform: rotate(var(--tilt));
+}
+
+.ambient__motif[data-tone='pink'] {
+  color: var(--amb-pink);
+}
+.ambient__motif[data-tone='peach'] {
+  color: var(--amb-peach);
+}
+.ambient__motif[data-tone='mint'] {
+  color: var(--amb-mint);
+}
+.ambient__motif[data-tone='sky'] {
+  color: var(--amb-sky);
+}
+.ambient__motif[data-tone='lilac'] {
+  color: var(--amb-lilac);
+}
+.ambient__motif[data-tone='butter'] {
+  color: var(--amb-butter);
+}
+
+/*
+ * Local motion (bobbing, rocking) animates `transform`. Travelling across the screen animates the
+ * separate `translate` and `scale` properties, so the two layer instead of overriding each other.
+ */
+.ambient__motif[data-motion='bob'] {
+  animation: amb-bob var(--duration) ease-in-out var(--delay) infinite;
+}
+
+.ambient__motif[data-motion='rock'] {
+  animation: amb-rock var(--duration) ease-in-out var(--delay) infinite;
+}
+
+.ambient__motif[data-motion='twinkle'] {
+  animation: amb-twinkle var(--duration) ease-in-out var(--delay) infinite;
+}
+
+/* Clouds: sail sideways and back, hovering as they go. */
+.ambient__motif[data-motion='drift'] {
+  animation:
+    amb-travel var(--duration) ease-in-out var(--delay) infinite alternate,
+    amb-float calc(var(--duration) / 5) ease-in-out var(--delay) infinite;
+}
+
+/* Ducks: paddle across and back, bobbing, and turn round at each end. */
+.ambient__motif[data-motion='swim'] {
+  animation:
+    amb-travel var(--duration) ease-in-out var(--delay) infinite alternate,
+    amb-turn calc(var(--duration) * 2) linear var(--delay) infinite,
+    amb-paddle calc(var(--duration) / 6) ease-in-out var(--delay) infinite;
+}
+
+/* Loops round an ellipse: two half-period swings a quarter-cycle apart. */
+.ambient__motif[data-motion='wander'] {
+  animation:
+    amb-wander-x calc(var(--duration) / 2) ease-in-out var(--delay) infinite alternate,
+    amb-wander-y calc(var(--duration) / 2) ease-in-out calc(var(--delay) - var(--duration) / 4)
+      infinite alternate;
+}
+
+@keyframes amb-bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(calc(var(--tilt) - 10deg));
+  }
+  50% {
+    transform: translate3d(0, -30px, 0) rotate(calc(var(--tilt) + 10deg));
+  }
+}
+
+/* Cradle rocking. */
+@keyframes amb-rock {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(calc(var(--tilt) - 16deg));
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(calc(var(--tilt) + 16deg));
+  }
+}
+
+@keyframes amb-twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.65) rotate(var(--tilt));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(calc(var(--tilt) + 45deg));
+  }
+}
+
+@keyframes amb-travel {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: var(--travel) 0;
+  }
+}
+
+@keyframes amb-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes amb-paddle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-7deg);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0) rotate(7deg);
+  }
+}
+
+/*
+ * One full there-and-back (2 × duration): face forward on the way out, flip on the way back.
+ * The flip squashes through edge-on, which reads as turning round.
+ */
+@keyframes amb-turn {
+  0%,
+  100% {
+    scale: 0 1;
+  }
+  3%,
+  47% {
+    scale: var(--face) 1;
+  }
+  53%,
+  97% {
+    scale: calc(var(--face) * -1) 1;
+  }
+}
+
+@keyframes amb-wander-x {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: var(--amb-wander) 0;
+  }
+}
+
+@keyframes amb-wander-y {
+  from {
+    transform: translate3d(0, calc(var(--amb-wander) * -0.3), 0) rotate(calc(var(--tilt) - 14deg));
+  }
+  to {
+    transform: translate3d(0, calc(var(--amb-wander) * 0.3), 0) rotate(calc(var(--tilt) + 14deg));
+  }
+}
+
+/* ---------- Bubbles ---------- */
+
+.ambient__bubble {
+  position: absolute;
+  bottom: -48px;
+  left: var(--x);
+  width: calc(var(--size) * var(--amb-scale));
+  height: calc(var(--size) * var(--amb-scale));
+  opacity: 0;
+  animation: amb-rise var(--duration) linear var(--delay) infinite;
+}
+
+.ambient__bubble-body {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 28%, var(--amb-bubble-shine) 0 7%, transparent 15%),
+    radial-gradient(circle at 68% 72%, var(--amb-bubble-shine) 0 2%, transparent 7%),
+    radial-gradient(circle, transparent 55%, var(--amb-bubble-tint));
+  box-shadow:
+    inset 0 0 0 1px var(--amb-bubble-edge),
+    0 0 10px var(--amb-bubble-glow);
+  animation: amb-sway calc(var(--duration) / 5) ease-in-out var(--delay) infinite alternate;
+}
+
+/* Rainbow soap film round the rim, slowly swirling. */
+.ambient__bubble-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(#f7b6cc, #f6dc8f, #a8e3cc, #a9cbf2, #cdb8f2, #f7b6cc);
+  mask: radial-gradient(circle, transparent 56%, var(--amb-bubble-film) 70%);
+  animation: amb-swirl 9s linear infinite;
+}
+
+@keyframes amb-swirl {
+  to {
+    rotate: 1turn;
+  }
+}
+
+@keyframes amb-rise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  8%,
+  82% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -112vh, 0);
+  }
+}
+
+@keyframes amb-sway {
+  from {
+    transform: translate3d(-14px, 0, 0);
+  }
+  to {
+    transform: translate3d(14px, 0, 0);
+  }
+}
+
+/* ---------- Variants ---------- */
+
+/* Fewer, smaller motifs on phones. MOTIFS is ordered so the first 12 still cover the screen. */
+@media (max-width: 719px) {
+  .ambient {
+    --amb-scale: 0.8;
+    --amb-wander: 70px;
+  }
+
+  .ambient__motif:nth-child(n + 13),
+  .ambient__bubble:nth-child(n + 5) {
+    display: none;
+  }
+}
+
+/* Night feeds: just a sleepy sky. */
+:root[data-theme='night']
+  .ambient__motif:not(
+    [data-shape='star'],
+    [data-shape='sparkle'],
+    [data-shape='moon'],
+    [data-shape='cloud']
+  ),
+:root[data-theme='night'] .ambient__bubbles {
+  display: none;
+}
+
+/*
+ * The global reduced-motion rule only shortens animations, which would make these infinite loops
+ * flicker. Stop them outright and leave a still picture.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .ambient *,
+  .ambient *::before,
+  .ambient *::after {
+    animation: none !important;
+  }
+
+  .ambient__bubbles {
+    display: none;
+  }
+}
+
+@media print {
+  .ambient {
+    display: none;
+  }
+}

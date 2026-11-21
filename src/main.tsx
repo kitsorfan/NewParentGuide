@@ -2,6 +2,7 @@ import '@fontsource-variable/commissioner'
 import './styles/tokens.css'
 import './styles/base.css'
 import './styles/app.css'
+import './styles/ambient.css'
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'

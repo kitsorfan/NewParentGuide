@@ -682,7 +682,8 @@
 
 .stat--reference {
   border-style: dashed;
-  background: transparent;
+  /* A "ghost" card, but solid enough to mute the ambient motifs behind it. */
+  background: color-mix(in srgb, var(--surface) 65%, transparent);
 }
 
 .stat__label {
@@ -1592,7 +1593,8 @@
   margin-top: 4px;
   border: 2px solid var(--border-strong);
   border-radius: 50%;
-  background: var(--bg);
+  /* Opaque so it hides the rail behind it; the page background is the ambient layer now. */
+  background: var(--surface);
   transition:
     border-color 0.2s ease,
     transform 0.3s var(--ease),
