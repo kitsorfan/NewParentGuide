@@ -174,6 +174,7 @@ const el = {
   vaccineMatrixTitle: 'Πρόγραμμα εμβολιασμών με μια ματιά',
   vaccineColumn: 'Εμβόλιο',
   doseLabel: 'Δόση',
+  tableScrollHint: 'Σύρετε τον πίνακα δεξιά–αριστερά για να δείτε όλες τις ηλικίες.',
   healthDisclaimer:
     'Το πρόγραμμα αλλάζει από καιρό σε καιρό. Ακολουθήστε πάντα τις οδηγίες του παιδιάτρου σας.',
 
@@ -379,6 +380,7 @@ const en: Messages = {
   vaccineMatrixTitle: 'Vaccination schedule at a glance',
   vaccineColumn: 'Vaccine',
   doseLabel: 'Dose',
+  tableScrollHint: 'Swipe the chart sideways to see every age.',
   healthDisclaimer:
     'The schedule changes from time to time. Always follow your paediatrician’s advice.',
 

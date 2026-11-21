@@ -2,6 +2,7 @@
 
 .shell {
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* No scrolling the page behind the open mobile menu. */
@@ -23,6 +24,7 @@
   flex-direction: column;
   min-width: 0;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .main:focus {
@@ -60,8 +62,12 @@
 }
 
 .topbar__title {
+  min-width: 0;
+  overflow: hidden;
   font-weight: 650;
   font-size: 0.95rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ---------- Sidebar ---------- */
@@ -104,6 +110,7 @@
     z-index: auto;
     width: auto;
     height: 100vh;
+    height: 100dvh;
     transform: none;
   }
 
@@ -315,7 +322,10 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Pinned to the bottom of the sidebar, so theme and language stay in reach on a long menu. */
 .sidebar__foot {
+  position: sticky;
+  bottom: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -323,6 +333,7 @@
   gap: 10px 8px;
   padding: 14px 16px 18px 20px;
   border-top: 1px solid var(--border);
+  background: var(--bg-sidebar);
 }
 
 /* ================= Controls ================= */
@@ -613,7 +624,8 @@
 .section-head__meta {
   display: flex;
   gap: 4px 14px;
-  grid-column: 1 / -1;
+  /* Under the heading text, not the icon. */
+  grid-column: -2 / -1;
   color: var(--text-3);
   font-size: 0.82rem;
   font-weight: 600;
@@ -1877,6 +1889,8 @@
   left: 0;
   min-width: 190px;
   text-align: left;
+  /* A divider, so doses scrolling underneath don't blur into the names. */
+  box-shadow: 1px 0 0 var(--border);
 }
 
 .matrix th[scope='row'] {
@@ -2167,6 +2181,192 @@
 .site-footer a:hover {
   color: var(--accent);
   text-decoration: underline;
+}
+
+/* ================= Phones & touch ================= */
+
+@media (max-width: 559px) {
+  .section {
+    padding-top: 40px;
+  }
+
+  /* Budget: two tiles a row instead of four tall ones. */
+  .budget__tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .stat {
+    padding: 12px 14px;
+  }
+
+  .stat__label {
+    font-size: 0.76rem;
+  }
+
+  .stat__value {
+    font-size: clamp(0.95rem, 4.2vw, 1.15rem);
+  }
+
+  .stat__sub {
+    font-size: 0.74rem;
+  }
+
+  /*
+   * Item cards: a thumbnail next to the name instead of a full-width photo, so the list isn't a
+   * wall of pictures. The body's children join the card's grid.
+   */
+  .item-card {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    align-items: start;
+    gap: 10px 14px;
+    padding: 14px;
+  }
+
+  .item-card__media {
+    grid-row: 1 / span 2;
+    aspect-ratio: 1;
+    border-radius: 10px;
+  }
+
+  .item-card__media .badge {
+    top: auto;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    justify-content: center;
+    gap: 4px;
+    padding: 2px 4px;
+    font-size: 0.62rem;
+  }
+
+  .item-card__media .badge__dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .item-card__placeholder {
+    width: 40px;
+    height: 40px;
+  }
+
+  .item-card__body {
+    display: contents;
+  }
+
+  .item-card__body > * {
+    grid-column: 1 / -1;
+  }
+
+  .item-card__body > .hint {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .item-card__body > .item-card__tags {
+    grid-row: 2;
+    grid-column: 2;
+    margin-top: 0;
+  }
+
+  /* Let the "why buy" bubble use the whole card width, pointing at the ⓘ button. */
+  .item-card .hint__bubble {
+    left: calc(-96px - 14px - 2px);
+  }
+
+  .item-card .hint__bubble::before {
+    right: 10px;
+    left: auto;
+  }
+
+  /* Vaccine chart: a narrower sticky column leaves room for the doses. */
+  .matrix th,
+  .matrix td {
+    padding: 8px 9px;
+  }
+
+  .matrix th[scope='row'],
+  .matrix thead th:first-child {
+    min-width: 136px;
+  }
+}
+
+/* Only when the chart is wider than the screen. */
+.table-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: var(--text-3);
+  font-size: 0.82rem;
+}
+
+.table-hint svg {
+  margin-top: 2px;
+}
+
+@media (min-width: 720px) {
+  .table-hint {
+    display: none;
+  }
+}
+
+/* Bigger hit areas for fingers. */
+@media (pointer: coarse) {
+  .icon-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hint__button {
+    width: 36px;
+    height: 36px;
+    margin: -7px -9px -7px 0;
+  }
+
+  .arrow-link,
+  .text-button,
+  .switch,
+  .own-toggle,
+  .check {
+    min-height: 32px;
+  }
+
+  .chip {
+    padding-block: 8px;
+  }
+
+  .segmented__option {
+    min-height: 36px;
+  }
+
+  .subnav__link {
+    padding-block: 9px;
+  }
+
+  .look-for__summary {
+    padding-block: 10px;
+  }
+
+  .site-footer a {
+    display: inline-block;
+    padding-block: 6px;
+  }
+}
+
+/* On touch screens a tap leaves :hover stuck, so don't leave cards lifted or photos zoomed. */
+@media (hover: none) {
+  .card:hover,
+  .stat:hover,
+  .chip:hover {
+    transform: none;
+  }
+
+  .item-card:hover .item-card__media img,
+  .item-card:hover .item-card__placeholder {
+    transform: none;
+  }
 }
 
 /* ================= Print ================= */

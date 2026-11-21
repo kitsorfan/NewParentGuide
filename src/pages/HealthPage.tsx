@@ -1,4 +1,4 @@
-import { CircleAlert } from 'lucide-react'
+import { ArrowLeftRight, CircleAlert } from 'lucide-react'
 import { BirthDateCard } from '../components/BirthDateCard'
 import { HEALTH_KIND_ICONS } from '../components/icons'
 import { PageHeader } from '../components/layout/PageHeader'
@@ -93,6 +93,10 @@ export function HealthPage({ birthDate, onBirthDateChange, today }: Props) {
             <h2 id="vaccines-title">{t.vaccineMatrixTitle}</h2>
           </div>
         </header>
+        <p className="table-hint">
+          <ArrowLeftRight aria-hidden="true" size={15} />
+          {t.tableScrollHint}
+        </p>
         {/* Scrollable on small screens, so it must be reachable with the keyboard. */}
         {/* oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
         <section className="table-scroll" aria-labelledby="vaccines-title" tabIndex={0}>
