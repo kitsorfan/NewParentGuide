@@ -291,6 +291,8 @@ const el = {
 
   footerNote: 'Ενδεικτικές τιμές · Δεν αντικαθιστά τον παιδίατρο',
   footerSources: 'Πηγές & σημειώσεις',
+  footerMadeBy: 'Δημιουργία:',
+  footerCredits: 'Ευχαριστίες:',
 }
 
 export type Messages = typeof el
@@ -580,6 +582,8 @@ const en: Messages = {
 
   footerNote: 'Indicative prices · Not a substitute for your paediatrician',
   footerSources: 'Sources & notes',
+  footerMadeBy: 'Made by',
+  footerCredits: 'Credits:',
 }
 
 export const messages: Readonly<Record<Lang, Messages>> = { el, en }

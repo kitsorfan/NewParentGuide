@@ -2945,6 +2945,11 @@
   text-decoration: underline;
 }
 
+.site-footer__credit {
+  flex-basis: 100%;
+  margin: 0;
+}
+
 /* ================= Phones & touch ================= */
 
 @media (max-width: 559px) {
