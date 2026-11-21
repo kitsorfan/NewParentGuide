@@ -28,3 +28,6 @@ coverage
 
 # Source material (already transcribed into src/data/referenceOrder.ts)
 *.pdf
+
+.vercel
+.env*
