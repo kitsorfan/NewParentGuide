@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Οδηγός Νεογέννητου</title>
+    <meta
+      name="description"
+      content="Οδηγός για νέους γονείς στην Ελλάδα: λίστα αγορών με τιμές, βαλίτσα μαιευτηρίου, οδηγός ανά μήνα, εμβόλια και εξετάσεις. A newborn guide for Greece, in Greek and English."
+    />
+    <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111013" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Οδηγός Νεογέννητου · Newborn Guide" />
+    <meta
+      property="og:description"
+      content="Λίστα αγορών, βαλίτσα μαιευτηρίου, οδηγός ανά μήνα, εμβόλια και εξετάσεις."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <script>
+      // Apply the saved theme before first paint (no white flash at night). See src/theme/theme.ts.
+      try {
+        var theme = JSON.parse(localStorage.getItem('npg.theme'))
+        if (theme === 'light' || theme === 'dark' || theme === 'night') {
+          document.documentElement.dataset.theme = theme
+        }
+      } catch (error) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Αυτή η σελίδα χρειάζεται JavaScript. · This page needs JavaScript.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

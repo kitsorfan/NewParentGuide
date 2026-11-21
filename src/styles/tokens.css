@@ -1,0 +1,142 @@
+/*
+ * Design tokens. One neutral, warm-grey scale + a single rose accent.
+ *
+ * Themes (set on <html data-theme>, see src/theme):
+ *   auto  – follows the system (default)
+ *   light – always light
+ *   dark  – always dark
+ *   night – very dim, warm and low in blue light, for night feeds
+ *
+ * Colours use light-dark(), so `color-scheme` alone switches between light and dark.
+ */
+:root {
+  color-scheme: light dark;
+
+  --font-body:
+    'Commissioner Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+
+  --bg: light-dark(#faf9f7, #111013);
+  --bg-sidebar: light-dark(#f4f2ef, #151417);
+  --surface: light-dark(#ffffff, #1a191d);
+  --surface-2: light-dark(#f4f2ef, #211f24);
+  --surface-3: light-dark(#e9e5e1, #2c2a30);
+  --hover: light-dark(#eeebe7, #242227);
+  --text: light-dark(#1d1b1a, #edebea);
+  --text-2: light-dark(#57524d, #b3aeb1);
+  --text-3: light-dark(#8a847e, #807b80);
+  --border: light-dark(#e8e4df, #2a282d);
+  --border-strong: light-dark(#d4cdc6, #3c3940);
+
+  --accent: light-dark(#b5466e, #f093b3);
+  --accent-hover: light-dark(#9b3a5e, #f6b0c8);
+  --accent-soft: light-dark(#f8e8ee, #3a2230);
+  --accent-contrast: light-dark(#ffffff, #1b0e14);
+
+  --p-essential: light-dark(#c2410c, #ff9466);
+  --p-essential-soft: light-dark(#fdeee6, #3a2119);
+  --p-recommended: light-dark(#a15c07, #efc066);
+  --p-recommended-soft: light-dark(#fbf1db, #352a15);
+  --p-optional: light-dark(#2f7466, #79d3b8);
+  --p-optional-soft: light-dark(#e3f1ec, #15322a);
+
+  --danger: light-dark(#b42318, #ff8f84);
+  --danger-soft: light-dark(#fcefed, #36191a);
+  --success: light-dark(#2f7466, #79d3b8);
+
+  --hint-bg: light-dark(#1d1b1a, #edebea);
+  --hint-text: light-dark(#faf9f7, #111013);
+
+  --shadow-color: light-dark(rgb(29 27 26 / 14%), rgb(0 0 0 / 60%));
+  --shadow-color-soft: light-dark(rgb(29 27 26 / 5%), rgb(0 0 0 / 40%));
+  --shadow-sm: 0 1px 2px var(--shadow-color-soft);
+  --shadow-md: 0 1px 3px var(--shadow-color-soft), 0 10px 24px -8px var(--shadow-color);
+  --shadow-lg: 0 24px 48px -16px var(--shadow-color);
+
+  /* Photos are dimmed slightly in dark themes so they don't glare. */
+  --photo-filter: none;
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --sidebar-width: 288px;
+  --topbar-height: 56px;
+  --gutter: 16px;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gutter: 40px;
+  }
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --photo-filter: brightness(0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+  :root[data-theme='auto'] {
+    --photo-filter: brightness(0.9);
+  }
+}
+
+/* Night: dim amber on near-black, no blue or white, for 3 a.m. feeds. */
+:root[data-theme='night'] {
+  color-scheme: dark;
+
+  --bg: #0a0806;
+  --bg-sidebar: #0d0a07;
+  --surface: #130f0a;
+  --surface-2: #1a140d;
+  --surface-3: #241b11;
+  --hover: #1d160e;
+  --text: #cfae82;
+  --text-2: #a5875f;
+  --text-3: #76603f;
+  --border: #231a10;
+  --border-strong: #33271a;
+
+  --accent: #d9874f;
+  --accent-hover: #e89a62;
+  --accent-soft: #2e1c0f;
+  --accent-contrast: #140b05;
+
+  --p-essential: #df7a52;
+  --p-essential-soft: #2c170e;
+  --p-recommended: #cf9d52;
+  --p-recommended-soft: #29200f;
+  --p-optional: #a4ab62;
+  --p-optional-soft: #1e200f;
+
+  --danger: #d9714f;
+  --danger-soft: #2b140c;
+  --success: #a4ab62;
+
+  --hint-bg: #cfae82;
+  --hint-text: #0a0806;
+
+  --shadow-color: rgb(0 0 0 / 70%);
+  --shadow-color-soft: rgb(0 0 0 / 50%);
+  --photo-filter: brightness(0.55) sepia(0.45) saturate(0.8);
+}
+
+/* Priority colours, picked up by badges, chips, stats and cards via `data-priority`. */
+[data-priority='essential'] {
+  --p: var(--p-essential);
+  --p-soft: var(--p-essential-soft);
+}
+[data-priority='recommended'] {
+  --p: var(--p-recommended);
+  --p-soft: var(--p-recommended-soft);
+}
+[data-priority='optional'] {
+  --p: var(--p-optional);
+  --p-soft: var(--p-optional-soft);
+}
