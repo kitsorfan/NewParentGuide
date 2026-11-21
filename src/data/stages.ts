@@ -308,7 +308,7 @@ export const stages: readonly Stage[] = [
   {
     id: 'months-3-6',
     ageLabel: { el: '3–6 μηνών', en: '3–6 months' },
-    title: { el: 'Γέλια, κυλίσματα και αρπαγές', en: 'Laughing, rolling and grabbing' },
+    title: { el: 'Γέλια, γυρίσματα και πρώτα πιασίματα', en: 'Laughing, rolling and grabbing' },
     intro: {
       el: 'Το μωρό γίνεται πιο κινητικό και κοινωνικό. Ώρα να ετοιμάσετε το σπίτι και να σκεφτείτε τις πρώτες τροφές.',
       en: 'Baby becomes more mobile and sociable. Time to prepare the home and think about first foods.',
