@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+<defs>
+<radialGradient id="ball" cx=".4" cy=".34" r=".72" fx=".3" fy=".24"><stop offset="0" stop-color="#dca06c"/><stop offset=".5" stop-color="#c27a48"/><stop offset="1" stop-color="#94562f"/></radialGradient>
+<linearGradient id="handle"><stop offset="0" stop-color="#8f7a52"/><stop offset=".35" stop-color="#ab9467"/><stop offset="1" stop-color="#66563a"/></linearGradient>
+<linearGradient id="collar"><stop offset="0" stop-color="#b98d4a"/><stop offset=".35" stop-color="#d6ad6a"/><stop offset="1" stop-color="#8c6a35"/></linearGradient>
+</defs>
+<path d="M16.2 1.99A10.4 10.4 0 0 1 20.27 6.28M1.99 16.2A10.4 10.4 0 0 0 6.28 20.27" fill="none" stroke="#1a1209" stroke-width="3.4" stroke-linecap="round"/>
+<path d="M16.2 1.99A10.4 10.4 0 0 1 20.27 6.28M1.99 16.2A10.4 10.4 0 0 0 6.28 20.27" fill="none" stroke="#d9874f" stroke-width="1.6" stroke-linecap="round"/>
+<g transform="translate(11 11) rotate(-45)" stroke="#1a1209">
+<circle cy="21.2" r="3" fill="none" stroke-width="4.6"/>
+<circle cy="21.2" r="3" fill="none" stroke="#8c9152" stroke-width="2.1"/>
+<rect x="-2.2" y="4" width="4.4" height="14.6" rx="2.2" fill="url(#handle)" stroke-width="1.4"/>
+<rect x="-3.6" y="8.2" width="7.2" height="3.2" rx="1.5" fill="url(#collar)" stroke-width="1.4"/>
+</g>
+<circle cx="11" cy="11" r="8" fill="url(#ball)" stroke="#1a1209" stroke-width="1.6"/>
+<path transform="translate(.6 .5)" d="M11 14.6c-2.9-1.9-3.9-3.4-3.9-4.7 0-1.1.9-1.9 1.9-1.9.8 0 1.5.4 2 1.1.5-.7 1.2-1.1 2-1.1 1 0 1.9.8 1.9 1.9 0 1.3-1 2.8-3.9 4.7Z" fill="#e3bb85"/>
+<ellipse cx="7.3" cy="7.1" rx="2.5" ry="1.3" transform="rotate(-45 7.3 7.1)" fill="#ecc791" opacity="0.55"/>
+<circle cx="10.4" cy="5.3" r=".7" fill="#ecc791" opacity="0.55"/>
+</svg>

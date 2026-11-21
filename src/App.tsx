@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AmbientBackground } from './components/layout/AmbientBackground'
+import { CursorGlow } from './components/layout/CursorGlow'
 import { Footer } from './components/layout/Footer'
 import { Sidebar } from './components/layout/Sidebar'
 import { TopBar } from './components/layout/TopBar'
@@ -105,6 +106,7 @@ export function App({ today: todayOverride }: Props) {
       </a>
 
       <AmbientBackground />
+      <CursorGlow />
 
       <TopBar
         page={route.page}
