@@ -1,13 +1,23 @@
 import {
+  AudioLines,
   Baby,
   Bath,
+  BedSingle,
   BookOpen,
+  Briefcase,
   CalendarHeart,
   Car,
+  Clock,
+  Coffee,
+  Droplet,
+  Eye,
   FileText,
   Heart,
+  HeartHandshake,
   HeartPulse,
   Hospital,
+  Hourglass,
+  House,
   Lightbulb,
   Luggage,
   Milk,
@@ -15,6 +25,7 @@ import {
   Phone,
   Pill,
   Puzzle,
+  Refrigerator,
   ShieldCheck,
   Shirt,
   ShoppingBag,
@@ -22,21 +33,25 @@ import {
   Snowflake,
   Sparkles,
   Stethoscope,
+  Sun,
   Syringe,
   TestTube,
+  Timer,
   Users,
   Utensils,
   type LucideIcon,
 } from 'lucide-react'
 import type { BagGroupIcon } from '../data/hospitalBag'
 import type { StageTopicId } from '../data/stages'
-import type { CategoryId, TipIcon } from '../data/types'
+import type { CardIcon, CategoryId } from '../data/types'
 import type { PageId } from '../router/routes'
 
 export const PAGE_ICONS: Record<PageId, LucideIcon> = {
   checklist: ShoppingBag,
   bag: Luggage,
   guide: CalendarHeart,
+  sleep: Moon,
+  breastfeeding: Droplet,
   health: Syringe,
   sources: BookOpen,
 }
@@ -53,12 +68,36 @@ export const CATEGORY_ICONS: Record<CategoryId, LucideIcon> = {
   play: Puzzle,
 }
 
-export const TIP_ICON_MAP: Record<TipIcon, LucideIcon> = {
+export const CARD_ICON_MAP: Record<CardIcon, LucideIcon> = {
   sleep: Moon,
   winter: Snowflake,
   hospital: Hospital,
   smart: Lightbulb,
   health: Phone,
+  baby: Baby,
+  bed: BedSingle,
+  shield: ShieldCheck,
+  sun: Sun,
+  eye: Eye,
+  bath: Bath,
+  noise: AudioLines,
+  phases: Hourglass,
+  rest: Users,
+  crying: HeartHandshake,
+  skin: Heart,
+  droplet: Droplet,
+  clock: Clock,
+  timer: Timer,
+  milk: Milk,
+  food: Utensils,
+  coffee: Coffee,
+  pill: Pill,
+  calendar: CalendarHeart,
+  work: Briefcase,
+  home: House,
+  bag: Luggage,
+  fridge: Refrigerator,
+  freezer: Snowflake,
 }
 
 export const TOPIC_ICONS: Record<StageTopicId, LucideIcon> = {

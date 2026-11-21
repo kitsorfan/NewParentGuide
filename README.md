@@ -1,6 +1,6 @@
 # Newborn Guide · Οδηγός Νεογέννητου
 
-A bilingual (Greek / English) guide for parents expecting a baby in Greece. Five pages, reachable
+A bilingual (Greek / English) guide for parents expecting a baby in Greece. Seven pages, reachable
 from the left sidebar (a slide-in menu on phones):
 
 | Page                     | What it covers                                                                                                                                                                                                                                                                                     |
@@ -8,6 +8,8 @@ from the left sidebar (a slide-in menu on phones):
 | **Shopping list**        | 73 items in 9 categories, each with a **priority** (essential / recommended / optional), **quantity**, **Greek price range**, a photo, a hover hint on _why_ to buy it, a **"what to look for"** checklist, a Skroutz link, and what another parent bought in 2024. Budget totals and a tick-list. |
 | **Hospital bag**         | What to pack for the maternity hospital (documents, mum, baby, partner, trip home), ticked off and remembered, linked to the shopping list.                                                                                                                                                        |
 | **Month by month**       | What to expect from the first two weeks to the first birthday: feeding, sleep, development, care, safety, and when to call the paediatrician. Enter the birth/due date to see "you are here".                                                                                                      |
+| **Sleep guide**          | Safe sleep (the three basics, do's and don'ts, safer bed-sharing), how much sleep by age, a room-temperature/TOG chart, routines and settling, coping with crying, and when to get help. With a birth date, the baby's age band is marked.                                                         |
+| **Breastfeeding guide**  | The first days, stomach size, latch step by step and feeding positions, a nappy chart for "is baby getting enough?", common problems (sore nipples, engorgement, mastitis, supply, tongue-tie, thrush), expressing and storing milk, and Greek support (helpline 10525, La Leche League Greece).   |
 | **Vaccines & check-ups** | Timeline of pregnancy vaccines, hospital tests, paediatric check-ups and the Greek National Immunisation Programme 2026, a vaccine chart, and the paperwork after birth. With a due date, every step gets a calendar date.                                                                         |
 | **Sources**              | Every official source used, photo credits and the disclaimer.                                                                                                                                                                                                                                      |
 
@@ -63,6 +65,8 @@ src/
     referenceOrder.ts    the 2024 order from the PDF
     hospitalBag.ts       hospital-bag checklist
     stages.ts            month-by-month guide
+    sleep.ts             sleep guide
+    breastfeeding.ts     breastfeeding guide
     health.ts            vaccines, tests, check-ups, paperwork (+ their sources)
     categories.ts, avoid.ts, tips.ts, sources.ts
   pages/           ← one component per page

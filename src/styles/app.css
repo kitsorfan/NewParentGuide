@@ -2162,6 +2162,766 @@
   font-size: 0.85rem;
 }
 
+/* ================= Sleep & breastfeeding guides ================= */
+
+/* A second block inside a section (e.g. a list under a grid). */
+.block {
+  margin-top: 16px;
+}
+
+.section > .red-flags {
+  margin-top: 16px;
+}
+
+.sub-title {
+  margin: 28px 0 12px;
+  font-size: 1.02rem;
+  font-weight: 680;
+}
+
+.section-note {
+  margin-top: 12px;
+  color: var(--text-3);
+  font-size: 0.85rem;
+}
+
+.here-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.age-card.is-current,
+.nappy.is-current {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.topic__more {
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+/* ---------- Pillars (the three safe-sleep basics) ---------- */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.pillar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 14px;
+  align-content: start;
+  padding: 16px 18px;
+}
+
+.pillar:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.pillar__icon {
+  display: grid;
+  grid-row: span 2;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  transition: transform 0.3s var(--ease);
+}
+
+.pillar:hover .pillar__icon {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.pillar__title {
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 680;
+}
+
+.pillar__text {
+  color: var(--text-2);
+  font-size: 0.88rem;
+}
+
+/* ---------- Do / don't lists ---------- */
+
+.check-card {
+  --k: var(--success);
+  padding: 18px 20px;
+}
+
+.check-card[data-kind='dont'] {
+  --k: var(--danger);
+}
+
+.check-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--k, var(--text));
+  font-size: 0.98rem;
+}
+
+.steps-card .check-card__title {
+  color: var(--text);
+}
+
+.check-card__list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.check-card__list li {
+  display: flex;
+  gap: 10px;
+}
+
+.check-card__list svg {
+  margin-top: 3px;
+  color: var(--k);
+}
+
+/* ---------- Callout (bed sharing) ---------- */
+
+.callout {
+  padding: 18px 20px;
+  border-left: 4px solid var(--p-recommended);
+  background: color-mix(in srgb, var(--p-recommended-soft) 55%, var(--surface));
+}
+
+.callout__title {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.callout > p:not(.callout__never) {
+  color: var(--text-2);
+  font-size: 0.9rem;
+}
+
+.callout__list {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+  padding-left: 18px;
+  font-size: 0.9rem;
+}
+
+.callout__list li::marker {
+  color: var(--p-recommended);
+}
+
+.callout__never {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--danger);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.callout__list--never li::marker {
+  color: var(--danger);
+}
+
+/* ---------- Sleep by age ---------- */
+
+.age-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.age-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 18px;
+}
+
+.age-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.age-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 10px;
+}
+
+.age-card__age {
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 0;
+}
+
+.facts dt {
+  color: var(--text-3);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 1px 0 0;
+  font-size: 0.92rem;
+  font-weight: 640;
+  font-variant-numeric: tabular-nums;
+}
+
+.age-card__note {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.86rem;
+}
+
+/* ---------- TOG chart ---------- */
+
+.tog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: 10px;
+  list-style: none;
+}
+
+.tog {
+  --t: var(--text-2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--t);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--t) 7%, var(--surface));
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
+}
+
+.tog:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.tog[data-temp='hot'] {
+  --t: var(--p-essential);
+}
+.tog[data-temp='warm'] {
+  --t: var(--p-recommended);
+}
+.tog[data-temp='mild'] {
+  --t: var(--p-optional);
+}
+.tog[data-temp='cool'] {
+  --t: light-dark(#2f6f9f, #8ec5f0);
+}
+.tog[data-temp='cold'] {
+  --t: light-dark(#5b56b0, #b3aef5);
+}
+
+/* No blue at night. */
+:root[data-theme='night'] .tog[data-temp='cool'] {
+  --t: #b9935e;
+}
+:root[data-theme='night'] .tog[data-temp='cold'] {
+  --t: #9a7c55;
+}
+
+.tog__room {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--t);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.tog__value {
+  font-size: 1.45rem;
+  font-weight: 740;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.tog__value small {
+  color: var(--text-3);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.tog__wear {
+  color: var(--text-2);
+  font-size: 0.82rem;
+}
+
+/* ---------- Stomach sizes ---------- */
+
+.stomach {
+  margin: 16px 0 0;
+  padding: 18px 20px;
+}
+
+.stomach__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 14px;
+}
+
+.stomach__caption strong {
+  font-size: 1rem;
+  font-weight: 680;
+}
+
+.stomach__caption span {
+  color: var(--text-2);
+  font-size: 0.88rem;
+}
+
+.stomach__sizes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+  list-style: none;
+}
+
+.stomach__size {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  /* Sit every circle on the same baseline (the largest is 56px), so the labels line up. */
+  padding-top: calc(56px - var(--size));
+  text-align: center;
+}
+
+.stomach__ball {
+  width: var(--size);
+  height: var(--size);
+  margin-bottom: 8px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--surface), var(--accent-soft) 70%);
+  transition: transform 0.35s var(--ease);
+}
+
+.stomach__ball[data-shape='egg'] {
+  width: calc(var(--size) * 0.78);
+  border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
+}
+
+.stomach__size:hover .stomach__ball {
+  transform: scale(1.08);
+}
+
+.stomach__age {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stomach__like {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.stomach__volume {
+  color: var(--text-3);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- Latch steps & positions ---------- */
+
+.steps-card {
+  padding: 18px 20px;
+}
+
+.steps {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  counter-reset: step;
+  font-size: 0.9rem;
+}
+
+.steps li {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 10px;
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.positions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.position {
+  padding: 14px 16px;
+}
+
+.position:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.position__name {
+  margin: 0 0 4px;
+  font-size: 0.94rem;
+  font-weight: 680;
+}
+
+.position p {
+  color: var(--text-2);
+  font-size: 0.86rem;
+}
+
+/* ---------- Nappy chart ---------- */
+
+.nappies {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+
+.nappy {
+  display: grid;
+  gap: 12px;
+  padding: 14px 18px;
+}
+
+@media (min-width: 720px) {
+  .nappy {
+    grid-template-columns: 160px minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: 20px;
+    align-items: start;
+  }
+}
+
+.nappy:hover {
+  transform: translateX(4px);
+  border-color: var(--border-strong);
+}
+
+.nappy.is-current:hover {
+  border-color: var(--accent);
+}
+
+.nappy__age {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+@media (min-width: 720px) {
+  .nappy__age {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.nappy__age h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.nappy__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nappy__label {
+  color: var(--text-3);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nappy__drops {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  color: light-dark(#3b82c4, #8ec5f0);
+}
+
+:root[data-theme='night'] .nappy__drops {
+  color: var(--accent);
+}
+
+.nappy__drops svg {
+  fill: currentColor;
+  fill-opacity: 0.25;
+}
+
+.nappy__text {
+  font-size: 0.88rem;
+}
+
+.nappy__poo {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.nappy__swatch {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 15%);
+  outline: 1px solid var(--border-strong);
+  outline-offset: 1px;
+  filter: var(--photo-filter);
+}
+
+.nappy__swatch[data-poo='meconium'] {
+  background: #2f2b1c;
+}
+.nappy__swatch[data-poo='changing'] {
+  background: #6f6a2b;
+}
+.nappy__swatch[data-poo='yellow'] {
+  background: #dba929;
+}
+
+/* ---------- Problems ---------- */
+
+.problem {
+  display: flex;
+  flex-direction: column;
+  padding: 18px 20px;
+}
+
+.problem:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.problem__title {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.problem__label {
+  margin-bottom: 4px;
+  color: var(--text-3);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.problem__signs {
+  margin-bottom: 12px;
+  color: var(--text-2);
+  font-size: 0.88rem;
+}
+
+.problem__doctor {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--danger-soft);
+  font-size: 0.84rem;
+}
+
+.problem__doctor svg {
+  margin-top: 3px;
+  color: var(--danger);
+}
+
+/* ---------- Milk storage ---------- */
+
+.storage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: 10px;
+  list-style: none;
+}
+
+.storage__tile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px;
+}
+
+.storage__tile:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.storage__icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.storage__place {
+  color: var(--text-2);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.storage__time {
+  font-size: 1.2rem;
+  font-weight: 730;
+  letter-spacing: -0.01em;
+}
+
+.storage__temp {
+  color: var(--text-3);
+  font-size: 0.8rem;
+}
+
+.storage__note {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.8rem;
+}
+
+/* ---------- Support contacts ---------- */
+
+.support {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.support__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+}
+
+.support__name {
+  font-size: 0.98rem;
+  font-weight: 680;
+}
+
+.support__detail {
+  color: var(--text-2);
+  font-size: 0.86rem;
+}
+
+.support__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.support__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background 0.15s ease,
+    transform 0.2s var(--ease);
+}
+
+.support__phone:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* ---------- Per-page sources ---------- */
+
+.page-sources {
+  padding-top: 44px;
+}
+
+.source-list--columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+  column-gap: 36px;
+}
+
 /* ================= Footer ================= */
 
 .site-footer {
@@ -2361,6 +3121,7 @@
 @media (hover: none) {
   .card:hover,
   .stat:hover,
+  .tog:hover,
   .chip:hover {
     transform: none;
   }
@@ -2410,6 +3171,7 @@
   .stat,
   .stage,
   .visit,
+  .tog,
   .avoid__list li {
     break-inside: avoid;
     transform: none !important;

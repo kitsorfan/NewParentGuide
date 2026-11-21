@@ -2,7 +2,15 @@
  * Hash-based routes (`#/guide/first-2-weeks`). Hash routing works on GitHub Pages without any
  * server configuration, and the optional second segment scrolls to a section of the page.
  */
-export const PAGES = ['checklist', 'bag', 'guide', 'health', 'sources'] as const
+export const PAGES = [
+  'checklist',
+  'bag',
+  'guide',
+  'sleep',
+  'breastfeeding',
+  'health',
+  'sources',
+] as const
 export type PageId = (typeof PAGES)[number]
 
 export interface Route {

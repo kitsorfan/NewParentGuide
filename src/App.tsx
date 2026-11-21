@@ -12,9 +12,11 @@ import { useI18n } from './i18n/useI18n'
 import { references } from './lib/catalog'
 import { DEFAULT_FILTERS, filterItems, type ItemFilters } from './lib/filter'
 import { BagPage } from './pages/BagPage'
+import { BreastfeedingPage } from './pages/BreastfeedingPage'
 import { ChecklistPage } from './pages/ChecklistPage'
 import { GuidePage } from './pages/GuidePage'
 import { HealthPage } from './pages/HealthPage'
+import { SleepPage } from './pages/SleepPage'
 import { SourcesPage } from './pages/SourcesPage'
 import { useRoute } from './router/useRoute'
 import { useTheme } from './theme/useTheme'
@@ -145,6 +147,10 @@ export function App({ today: todayOverride }: Props) {
           )}
           {route.page === 'bag' && <BagPage {...packedItems} />}
           {route.page === 'guide' && <GuidePage {...dateProps} />}
+          {route.page === 'sleep' && <SleepPage birthDate={birthDate} today={today} />}
+          {route.page === 'breastfeeding' && (
+            <BreastfeedingPage birthDate={birthDate} today={today} />
+          )}
           {route.page === 'health' && <HealthPage {...dateProps} />}
           {route.page === 'sources' && <SourcesPage />}
         </div>

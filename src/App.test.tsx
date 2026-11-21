@@ -2,9 +2,12 @@ import { act, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { App } from './App'
+import { feedingProblems, nappyChart } from './data/breastfeeding'
 import { bagGroups } from './data/hospitalBag'
 import { items } from './data/items'
+import { safeSleepRules, sleepBands } from './data/sleep'
 import { stages } from './data/stages'
+import { BIRTH_DATE_STORAGE_KEY } from './hooks/useBirthDate'
 import { OWNED_STORAGE_KEY, PACKED_STORAGE_KEY } from './hooks/useOwnedItems'
 import { messages } from './i18n/messages'
 import { BAG_TOTAL } from './lib/bag'
@@ -41,7 +44,8 @@ describe('App shell', () => {
       'aria-current',
       'page',
     )
-    expect(within(nav).getByRole('link', { name: /Sleep/ })).toHaveAttribute(
+    // The shopping-list section ("Sleep 0/12"), not the "Sleep guide" page.
+    expect(within(nav).getByRole('link', { name: /^Sleep\s*\d+\/\d+$/ })).toHaveAttribute(
       'href',
       '#/checklist/sleep',
     )
@@ -179,6 +183,81 @@ describe('Guide page', () => {
     expect(screen.getByText('Baby is 12 days old')).toBeInTheDocument()
     const current = screen.getByText(en.youAreHere).closest('section')
     expect(current).toHaveAttribute('id', 'sec-first-2-weeks')
+  })
+})
+
+describe('Guide page links', () => {
+  it('points the sleep and feeding topics to their guides', () => {
+    renderWithI18n(<App />, 'en')
+    goTo('#/guide')
+    const sleepLinks = screen.getAllByRole('link', { name: `More: ${en.nav.sleep}` })
+    expect(sleepLinks).toHaveLength(
+      stages.filter((s) => s.topics.some((t) => t.id === 'sleep')).length,
+    )
+    expect(sleepLinks[0]).toHaveAttribute('href', '#/sleep')
+    expect(
+      screen.getAllByRole('link', { name: `More: ${en.nav.breastfeeding}` })[0],
+    ).toHaveAttribute('href', '#/breastfeeding')
+  })
+})
+
+describe('Sleep page', () => {
+  it('shows the safe-sleep basics, the sidebar sections and its sources', () => {
+    renderWithI18n(<App />, 'en')
+    goTo('#/sleep')
+
+    expect(screen.getByRole('heading', { level: 1, name: en.sleepPage.title })).toBeInTheDocument()
+    for (const rule of safeSleepRules) {
+      expect(screen.getByRole('heading', { level: 3, name: rule.title.en })).toBeInTheDocument()
+    }
+    const nav = screen.getByRole('complementary', { name: en.mainNav })
+    expect(within(nav).getByRole('link', { name: en.sleepPage.sections.room })).toHaveAttribute(
+      'href',
+      '#/sleep/room',
+    )
+    expect(screen.getByRole('heading', { name: en.pageSourcesTitle })).toBeInTheDocument()
+    expect(document.title).toBe(`${en.nav.sleep} · ${en.brand}`)
+  })
+
+  it('marks the baby’s age band from the saved birth date', () => {
+    window.localStorage.setItem(BIRTH_DATE_STORAGE_KEY, JSON.stringify('2026-11-01'))
+    // 10 weeks old.
+    renderWithI18n(<App today={parseIsoDate('2027-01-10')} />, 'en')
+    goTo('#/sleep')
+
+    const current = screen.getByText(en.youAreHere).closest('li')
+    expect(current).toHaveTextContent(sleepBands[1]?.age.en ?? '')
+    expect(current).toHaveClass('is-current')
+  })
+})
+
+describe('Breastfeeding page', () => {
+  it('shows the nappy chart, problems and a tap-to-call helpline', () => {
+    renderWithI18n(<App />, 'en')
+    goTo('#/breastfeeding')
+
+    expect(
+      screen.getByRole('heading', { level: 1, name: en.feedingPage.title }),
+    ).toBeInTheDocument()
+    for (const row of nappyChart) {
+      expect(screen.getByRole('heading', { level: 3, name: row.age.en })).toBeInTheDocument()
+    }
+    for (const problem of feedingProblems) {
+      expect(screen.getByRole('heading', { name: problem.title.en })).toBeInTheDocument()
+    }
+    expect(screen.getByRole('link', { name: /Call 10525/ })).toHaveAttribute('href', 'tel:10525')
+    // No "you are here" without a birth date.
+    expect(screen.queryByText(en.youAreHere)).not.toBeInTheDocument()
+  })
+
+  it('marks today’s row of the nappy chart', () => {
+    window.localStorage.setItem(BIRTH_DATE_STORAGE_KEY, JSON.stringify('2027-01-20'))
+    // Day 3 of life (born on day 1).
+    renderWithI18n(<App today={parseIsoDate('2027-01-22')} />, 'el')
+    goTo('#/breastfeeding')
+
+    const current = screen.getByText(el.youAreHere).closest('li')
+    expect(current).toHaveTextContent(nappyChart[1]?.age.el ?? '')
   })
 })
 

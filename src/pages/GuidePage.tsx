@@ -1,15 +1,22 @@
-import { MapPin, TriangleAlert } from 'lucide-react'
+import { ArrowRight, MapPin } from 'lucide-react'
 import { BirthDateCard } from '../components/BirthDateCard'
-import { TipCard } from '../components/ContentBlocks'
+import { RedFlags, TipCard } from '../components/ContentBlocks'
 import { TOPIC_ICONS } from '../components/icons'
 import { PageHeader } from '../components/layout/PageHeader'
-import { stages, type Stage } from '../data/stages'
+import { stages, type Stage, type StageTopicId } from '../data/stages'
 import { tips } from '../data/tips'
+import { interpolate } from '../i18n/format'
 import { useI18n } from '../i18n/useI18n'
-import { currentStageId } from '../lib/age'
-import { sectionDomId } from '../router/routes'
+import { currentRangeId } from '../lib/age'
+import { routeHref, sectionDomId, type PageId } from '../router/routes'
 
 const guideTips = tips.filter((tip) => tip.page === 'guide')
+
+/** Topics that have a page of their own. */
+const TOPIC_PAGES: Partial<Record<StageTopicId, PageId>> = {
+  sleep: 'sleep',
+  feeding: 'breastfeeding',
+}
 
 interface Props {
   readonly birthDate: string | undefined
@@ -45,6 +52,7 @@ function StageSection({ stage, current }: { readonly stage: Stage; readonly curr
         <div className="topic-grid">
           {stage.topics.map((topic) => {
             const Icon = TOPIC_ICONS[topic.id]
+            const page = TOPIC_PAGES[topic.id]
             return (
               <div key={topic.id} className="card topic">
                 <h3 className="topic__title">
@@ -56,22 +64,18 @@ function StageSection({ stage, current }: { readonly stage: Stage; readonly curr
                     <li key={point.en}>{l(point)}</li>
                   ))}
                 </ul>
+                {page && (
+                  <a className="arrow-link topic__more" href={routeHref(page)}>
+                    {interpolate(t.moreInGuide, { page: t.nav[page] })}
+                    <ArrowRight aria-hidden="true" size={13} />
+                  </a>
+                )}
               </div>
             )
           })}
         </div>
 
-        <aside className="red-flags" aria-label={t.redFlagsTitle}>
-          <h3 className="red-flags__title">
-            <TriangleAlert aria-hidden="true" size={16} />
-            {t.redFlagsTitle}
-          </h3>
-          <ul>
-            {stage.redFlags.map((flag) => (
-              <li key={flag.en}>{l(flag)}</li>
-            ))}
-          </ul>
-        </aside>
+        <RedFlags title={t.redFlagsTitle} flags={stage.redFlags} />
       </div>
     </section>
   )
@@ -79,7 +83,7 @@ function StageSection({ stage, current }: { readonly stage: Stage; readonly curr
 
 export function GuidePage({ birthDate, onBirthDateChange, today }: Props) {
   const { t } = useI18n()
-  const current = currentStageId(stages, birthDate, today)
+  const current = currentRangeId(stages, birthDate, today)
 
   return (
     <>

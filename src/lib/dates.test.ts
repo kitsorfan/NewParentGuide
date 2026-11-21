@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { stages } from '../data/stages'
 import { messages } from '../i18n/messages'
-import { currentStageId, describeAge } from './age'
+import { currentRangeId, describeAge } from './age'
 import { addAge, daysBetween, formatDate, parseIsoDate, toIsoDate } from './dates'
 
 describe('dates', () => {
@@ -47,19 +47,19 @@ describe('describeAge', () => {
   })
 })
 
-describe('currentStageId', () => {
+describe('currentRangeId', () => {
   const today = parseIsoDate('2027-03-01')
 
   it('finds the stage for the baby’s age', () => {
-    expect(currentStageId(stages, '2027-02-25', today)).toBe('first-2-weeks')
-    expect(currentStageId(stages, '2027-02-08', today)).toBe('first-month')
-    expect(currentStageId(stages, '2027-01-15', today)).toBe('months-1-3')
-    expect(currentStageId(stages, '2026-08-01', today)).toBe('months-6-12')
+    expect(currentRangeId(stages, '2027-02-25', today)).toBe('first-2-weeks')
+    expect(currentRangeId(stages, '2027-02-08', today)).toBe('first-month')
+    expect(currentRangeId(stages, '2027-01-15', today)).toBe('months-1-3')
+    expect(currentRangeId(stages, '2026-08-01', today)).toBe('months-6-12')
   })
 
   it('returns nothing before birth, without a date, or after the last stage', () => {
-    expect(currentStageId(stages, '2027-04-01', today)).toBeUndefined()
-    expect(currentStageId(stages, undefined, today)).toBeUndefined()
-    expect(currentStageId(stages, '2025-01-01', today)).toBeUndefined()
+    expect(currentRangeId(stages, '2027-04-01', today)).toBeUndefined()
+    expect(currentRangeId(stages, undefined, today)).toBeUndefined()
+    expect(currentRangeId(stages, '2025-01-01', today)).toBeUndefined()
   })
 })

@@ -1,5 +1,6 @@
-import { ArrowUpRight, Camera, CircleAlert } from 'lucide-react'
+import { Camera, CircleAlert } from 'lucide-react'
 import { PageHeader } from '../components/layout/PageHeader'
+import { SourceLink } from '../components/SourceLink'
 import { healthSources } from '../data/health'
 import { items } from '../data/items'
 import { photos } from '../data/photos'
@@ -23,22 +24,6 @@ const credits = items.flatMap((item) => {
   const photo = photos[item.id]
   return photo ? [{ item, photo }] : []
 })
-
-function SourceLink({ source }: { readonly source: Source }) {
-  const { t, l } = useI18n()
-  return (
-    <li className="source">
-      <a className="source__link" href={source.url} target="_blank" rel="noopener noreferrer">
-        <span className="source__title">{l(source.title)}</span>
-        <ArrowUpRight aria-hidden="true" size={16} className="source__arrow" />
-        <span className="visually-hidden"> {t.opensInNewTab}</span>
-      </a>
-      <span className="source__meta">
-        {source.publisher} · {source.lang === 'el' ? t.sourceLangGreek : t.sourceLangEnglish}
-      </span>
-    </li>
-  )
-}
 
 export function SourcesPage() {
   const { t, l } = useI18n()

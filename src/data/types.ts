@@ -82,19 +82,62 @@ export interface AvoidEntry {
   readonly why: Localized
 }
 
-export const TIP_ICONS = ['sleep', 'winter', 'hospital', 'smart', 'health'] as const
-export type TipIcon = (typeof TIP_ICONS)[number]
+/** Icons a content card can show. Mapped to Lucide icons in src/components/icons.ts. */
+export const CARD_ICONS = [
+  'sleep',
+  'winter',
+  'hospital',
+  'smart',
+  'health',
+  'baby',
+  'bed',
+  'shield',
+  'sun',
+  'eye',
+  'bath',
+  'noise',
+  'phases',
+  'rest',
+  'crying',
+  'skin',
+  'droplet',
+  'clock',
+  'timer',
+  'milk',
+  'food',
+  'coffee',
+  'pill',
+  'calendar',
+  'work',
+  'home',
+  'bag',
+  'fridge',
+  'freezer',
+] as const
+export type CardIcon = (typeof CARD_ICONS)[number]
 
-export interface Tip {
+/** A titled list of points, shown as a card. */
+export interface InfoCard {
   readonly id: string
-  readonly icon: TipIcon
-  /** Which page shows the tip. */
-  readonly page: 'checklist' | 'guide'
+  readonly icon: CardIcon
   readonly title: Localized
   readonly points: readonly Localized[]
 }
 
-export const SOURCE_TOPICS = ['sleep', 'car', 'feeding', 'health', 'development', 'prices'] as const
+export interface Tip extends InfoCard {
+  /** Which page shows the tip. */
+  readonly page: 'checklist' | 'guide'
+}
+
+export const SOURCE_TOPICS = [
+  'sleep',
+  'breastfeeding',
+  'car',
+  'feeding',
+  'health',
+  'development',
+  'prices',
+] as const
 export type SourceTopic = (typeof SOURCE_TOPICS)[number]
 
 export interface Source {
