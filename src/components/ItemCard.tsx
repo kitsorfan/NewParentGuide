@@ -6,8 +6,10 @@ import { formatEuro, formatEuroRange, formatQuantity, interpolate } from '../i18
 import { useI18n } from '../i18n/useI18n'
 import { itemEstimate } from '../lib/budget'
 import { skroutzSearchUrl } from '../lib/links'
+import { hasEnough } from '../lib/owned'
 import { CATEGORY_ICONS } from './icons'
 import { InfoHint } from './InfoHint'
+import { OwnControl } from './OwnControl'
 import { PriorityBadge } from './PriorityBadge'
 
 interface Props {
@@ -16,8 +18,9 @@ interface Props {
   readonly photo: PhotoCredit | undefined
   /** What to look for when buying. */
   readonly features: readonly Localized[] | undefined
-  readonly owned: boolean
-  readonly onToggle: (id: string) => void
+  /** How many of this item the user has. */
+  readonly count: number
+  readonly onCountChange: (id: string, count: number) => void
 }
 
 export const ItemCard = memo(function ItemCard({
@@ -25,11 +28,12 @@ export const ItemCard = memo(function ItemCard({
   reference,
   photo,
   features,
-  owned,
-  onToggle,
+  count,
+  onCountChange,
 }: Props) {
   const { lang, t, l } = useI18n()
   const name = l(item.name)
+  const owned = hasEnough(item, count)
   const units = t.units[item.unit]
   const unitLabel = item.quantity.max === 1 ? units.one : units.other
   const estimate = itemEstimate(item)
@@ -143,18 +147,7 @@ export const ItemCard = memo(function ItemCard({
         )}
 
         <div className="item-card__footer">
-          <label className="own-toggle">
-            <input
-              type="checkbox"
-              checked={owned}
-              onChange={() => onToggle(item.id)}
-              aria-label={interpolate(t.ownedLabel, { name })}
-            />
-            <span className="own-toggle__box" aria-hidden="true">
-              <Check size={14} strokeWidth={3} />
-            </span>
-            <span aria-hidden="true">{t.ownedShort}</span>
-          </label>
+          <OwnControl item={item} name={name} count={count} onCountChange={onCountChange} />
           <a
             className="arrow-link"
             href={skroutzSearchUrl(item.searchTerm)}

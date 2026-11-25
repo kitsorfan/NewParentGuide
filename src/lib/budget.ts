@@ -34,6 +34,31 @@ export function sumEstimates(items: readonly Item[]): Estimate {
     .reduce(addEstimates, ZERO_ESTIMATE)
 }
 
+/**
+ * What is still left to spend on an item when the user already has `count` of it: nothing once
+ * they have enough, otherwise the estimate for the units still missing.
+ */
+export function remainingEstimate(item: Item, count: number): Estimate {
+  if (count <= 0) return itemEstimate(item)
+  if (count >= item.quantity.min) return ZERO_ESTIMATE
+  return {
+    min: (item.quantity.min - count) * item.price.min,
+    max: (item.quantity.max - count) * item.price.max,
+    typical: Math.max(0, typicalQuantity(item) - count) * item.price.typical,
+  }
+}
+
+/** Sums `remainingEstimate` over the items that count towards the budget. */
+export function sumRemaining(
+  items: readonly Item[],
+  counts: Readonly<Record<string, number>>,
+): Estimate {
+  return items
+    .filter((item) => item.countInBudget !== false)
+    .map((item) => remainingEstimate(item, counts[item.id] ?? 0))
+    .reduce(addEstimates, ZERO_ESTIMATE)
+}
+
 export interface BudgetTier {
   /** The lowest priority included in this tier. */
   readonly upTo: Priority

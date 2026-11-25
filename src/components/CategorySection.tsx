@@ -4,6 +4,7 @@ import type { Category, Item, ReferencePurchase } from '../data/types'
 import { formatEuro, interpolate } from '../i18n/format'
 import { useI18n } from '../i18n/useI18n'
 import { sumEstimates } from '../lib/budget'
+import type { OwnedCounts } from '../lib/owned'
 import { sectionDomId } from '../router/routes'
 import { CATEGORY_ICONS } from './icons'
 import { ItemCard } from './ItemCard'
@@ -15,11 +16,18 @@ interface Props {
   /** Every item of this category, for the subtotal. */
   readonly allItems: readonly Item[]
   readonly references: ReadonlyMap<string, ReferencePurchase>
-  readonly owned: ReadonlySet<string>
-  readonly onToggle: (id: string) => void
+  readonly counts: OwnedCounts
+  readonly onCountChange: (id: string, count: number) => void
 }
 
-export function CategorySection({ category, items, allItems, references, owned, onToggle }: Props) {
+export function CategorySection({
+  category,
+  items,
+  allItems,
+  references,
+  counts,
+  onCountChange,
+}: Props) {
   const { lang, t, l } = useI18n()
   const headingId = `${category.id}-title`
   const subtotal = sumEstimates(allItems)
@@ -56,8 +64,8 @@ export function CategorySection({ category, items, allItems, references, owned, 
             reference={references.get(item.id)}
             photo={photos[item.id]}
             features={lookFor[item.id]}
-            owned={owned.has(item.id)}
-            onToggle={onToggle}
+            count={counts[item.id] ?? 0}
+            onCountChange={onCountChange}
           />
         ))}
       </div>

@@ -24,7 +24,14 @@ interface Props extends OwnedItems {
   readonly visible: readonly Item[]
 }
 
-export function ChecklistPage({ owned, toggle, clear, filters, onFiltersChange, visible }: Props) {
+export function ChecklistPage({
+  counts,
+  setCount,
+  clear,
+  filters,
+  onFiltersChange,
+  visible,
+}: Props) {
   const { t } = useI18n()
   const visibleByCategory = groupByCategory(visible)
 
@@ -43,7 +50,7 @@ export function ChecklistPage({ owned, toggle, clear, filters, onFiltersChange, 
 
       <BudgetSummary
         items={items}
-        owned={owned}
+        counts={counts}
         referenceTotal={REFERENCE_ORDER_TOTAL}
         referenceCount={referenceOrder.length}
         onClearOwned={clear}
@@ -71,8 +78,8 @@ export function ChecklistPage({ owned, toggle, clear, filters, onFiltersChange, 
             items={categoryItems}
             allItems={itemsByCategory.get(category.id) ?? []}
             references={references}
-            owned={owned}
-            onToggle={toggle}
+            counts={counts}
+            onCountChange={setCount}
           />
         )
       })}

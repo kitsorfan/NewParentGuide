@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import type { Item } from '../data/types'
-import { budgetTiers, itemEstimate, sumEstimates, typicalQuantity } from './budget'
+import {
+  budgetTiers,
+  itemEstimate,
+  remainingEstimate,
+  sumEstimates,
+  sumRemaining,
+  typicalQuantity,
+} from './budget'
 
 function makeItem(overrides: Partial<Item> & Pick<Item, 'id'>): Item {
   return {
@@ -52,6 +59,23 @@ describe('sumEstimates', () => {
 
   it('returns zero for an empty list', () => {
     expect(sumEstimates([])).toEqual({ min: 0, max: 0, typical: 0 })
+  })
+})
+
+describe('remainingEstimate / sumRemaining', () => {
+  it('only counts the units still missing, and nothing once there are enough', () => {
+    // Bottles 3–6 at 6/15/9 €, typical quantity 5.
+    expect(remainingEstimate(bottles, 0)).toEqual(itemEstimate(bottles))
+    expect(remainingEstimate(bottles, 1)).toEqual({ min: 12, max: 75, typical: 36 })
+    expect(remainingEstimate(bottles, 3)).toEqual({ min: 0, max: 0, typical: 0 })
+  })
+
+  it('skips the items excluded from the budget', () => {
+    expect(sumRemaining([bottles, sterilizer, carSeat], { bottles: 1, sterilizer: 1 })).toEqual({
+      min: 12,
+      max: 75,
+      typical: 36,
+    })
   })
 })
 

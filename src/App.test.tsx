@@ -8,7 +8,11 @@ import { items } from './data/items'
 import { safeSleepRules, sleepBands } from './data/sleep'
 import { stages } from './data/stages'
 import { BIRTH_DATE_STORAGE_KEY } from './hooks/useBirthDate'
-import { OWNED_STORAGE_KEY, PACKED_STORAGE_KEY } from './hooks/useOwnedItems'
+import {
+  LEGACY_OWNED_STORAGE_KEY,
+  OWNED_STORAGE_KEY,
+  PACKED_STORAGE_KEY,
+} from './hooks/useOwnedItems'
 import { messages } from './i18n/messages'
 import { BAG_TOTAL } from './lib/bag'
 import { parseIsoDate } from './lib/dates'
@@ -100,18 +104,61 @@ describe('Shopping list page', () => {
   it('remembers ticked items, updates progress and the sidebar', async () => {
     const user = userEvent.setup()
     renderWithI18n(<App />, 'en')
-    const card = screen.getByTestId('item-bottles')
-    await user.click(within(card).getByRole('checkbox', { name: /I have: Baby bottles/ }))
+    const card = screen.getByTestId('item-sterilizer')
+    // The whole "Got it" pill is the hit area, not just the box.
+    await user.click(within(card).getByText(en.ownedShort))
 
+    expect(within(card).getByRole('checkbox', { name: /I have: Bottle steriliser/ })).toBeChecked()
     expect(card).toHaveClass('is-owned')
     expect(screen.getByText(`You have 1 of ${items.length}`)).toBeInTheDocument()
-    expect(JSON.parse(window.localStorage.getItem(OWNED_STORAGE_KEY) ?? '[]')).toEqual(['bottles'])
+    expect(JSON.parse(window.localStorage.getItem(OWNED_STORAGE_KEY) ?? '{}')).toEqual({
+      sterilizer: 1,
+    })
     const feeding = items.filter((item) => item.category === 'feeding').length
     expect(screen.getByRole('link', { name: new RegExp(`Feeding\\s*1/${feeding}`) })).toBeVisible()
 
     vi.spyOn(window, 'confirm').mockReturnValue(true)
     await user.click(screen.getByRole('button', { name: en.clearOwned }))
     expect(card).not.toHaveClass('is-owned')
+  })
+
+  it('counts items bought in quantity, up to the need and beyond', async () => {
+    const user = userEvent.setup()
+    renderWithI18n(<App />, 'en')
+    // Baby bottles: need 3–6.
+    const card = screen.getByTestId('item-bottles')
+    const more = within(card).getByRole('button', { name: 'One more: Baby bottles' })
+    const input = within(card).getByRole('spinbutton', { name: /Baby bottles: how many/ })
+    expect(within(card).getByRole('button', { name: 'One fewer: Baby bottles' })).toBeDisabled()
+
+    await user.click(more)
+    await user.click(more)
+    expect(input).toHaveValue(2)
+    expect(within(card).getByText('1 more to go', { selector: '.qty-tip' })).toBeInTheDocument()
+    expect(card).not.toHaveClass('is-owned')
+
+    await user.click(more)
+    expect(card).toHaveClass('is-owned')
+    expect(screen.getByText(`You have 1 of ${items.length}`)).toBeInTheDocument()
+
+    await user.clear(input)
+    await user.type(input, '8')
+    await user.tab()
+    expect(input).toHaveValue(8)
+    expect(within(card).getByText('+2 extra', { selector: '.qty-tip' })).toBeInTheDocument()
+    expect(JSON.parse(window.localStorage.getItem(OWNED_STORAGE_KEY) ?? '{}')).toEqual({
+      bottles: 8,
+    })
+  })
+
+  it('carries ticks over from the old checklist format', () => {
+    window.localStorage.setItem(LEGACY_OWNED_STORAGE_KEY, JSON.stringify(['bottles', 'crib']))
+    renderWithI18n(<App />, 'en')
+    expect(screen.getByTestId('item-crib')).toHaveClass('is-owned')
+    expect(
+      within(screen.getByTestId('item-bottles')).getByRole('spinbutton', { name: /Baby bottles/ }),
+    ).toHaveValue(3)
+    expect(screen.getByText(`You have 2 of ${items.length}`)).toBeInTheDocument()
   })
 
   it('filters by priority and search, and can reset', async () => {

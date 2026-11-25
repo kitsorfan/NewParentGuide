@@ -2,11 +2,13 @@ import { useMemo } from 'react'
 import type { Item } from '../data/types'
 import { formatEuro, formatEuroRange, interpolate } from '../i18n/format'
 import { useI18n } from '../i18n/useI18n'
-import { budgetTiers, sumEstimates } from '../lib/budget'
+import { budgetTiers, sumRemaining } from '../lib/budget'
+import { completeIds, type OwnedCounts } from '../lib/owned'
 
 interface Props {
   readonly items: readonly Item[]
-  readonly owned: ReadonlySet<string>
+  /** How many of each item the user has. */
+  readonly counts: OwnedCounts
   readonly referenceTotal: number
   readonly referenceCount: number
   readonly onClearOwned: () => void
@@ -14,19 +16,17 @@ interface Props {
 
 export function BudgetSummary({
   items,
-  owned,
+  counts,
   referenceTotal,
   referenceCount,
   onClearOwned,
 }: Props) {
   const { lang, t } = useI18n()
   const tiers = useMemo(() => budgetTiers(items), [items])
-  const remaining = useMemo(
-    () => sumEstimates(items.filter((item) => !owned.has(item.id))),
-    [items, owned],
-  )
+  const remaining = useMemo(() => sumRemaining(items, counts), [items, counts])
   const tierLabels = [t.budgetEssentials, t.budgetRecommended, t.budgetAll]
-  const done = items.filter((item) => owned.has(item.id)).length
+  const done = useMemo(() => completeIds(items, counts).size, [items, counts])
+  const started = Object.keys(counts).length > 0
   const percent = items.length === 0 ? 0 : Math.round((done / items.length) * 100)
 
   return (
@@ -71,7 +71,7 @@ export function BudgetSummary({
               amount: formatEuro(Math.round(remaining.typical), lang),
             })}
           </span>
-          {done > 0 && (
+          {started && (
             <button
               type="button"
               className="text-button"
