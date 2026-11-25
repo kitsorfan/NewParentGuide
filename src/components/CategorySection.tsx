@@ -17,7 +17,9 @@ interface Props {
   readonly allItems: readonly Item[]
   readonly references: ReadonlyMap<string, ReferencePurchase>
   readonly counts: OwnedCounts
+  readonly skipped: ReadonlySet<string>
   readonly onCountChange: (id: string, count: number) => void
+  readonly onSkipChange: (id: string, skipped: boolean) => void
 }
 
 export function CategorySection({
@@ -26,7 +28,9 @@ export function CategorySection({
   allItems,
   references,
   counts,
+  skipped,
   onCountChange,
+  onSkipChange,
 }: Props) {
   const { lang, t, l } = useI18n()
   const headingId = `${category.id}-title`
@@ -65,7 +69,9 @@ export function CategorySection({
             photo={photos[item.id]}
             features={lookFor[item.id]}
             count={counts[item.id] ?? 0}
+            skipped={skipped.has(item.id)}
             onCountChange={onCountChange}
+            onSkipChange={onSkipChange}
           />
         ))}
       </div>

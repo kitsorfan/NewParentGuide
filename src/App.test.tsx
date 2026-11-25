@@ -12,6 +12,7 @@ import {
   LEGACY_OWNED_STORAGE_KEY,
   OWNED_STORAGE_KEY,
   PACKED_STORAGE_KEY,
+  SKIPPED_STORAGE_KEY,
 } from './hooks/useOwnedItems'
 import { messages } from './i18n/messages'
 import { BAG_TOTAL } from './lib/bag'
@@ -149,6 +150,27 @@ describe('Shopping list page', () => {
     expect(JSON.parse(window.localStorage.getItem(OWNED_STORAGE_KEY) ?? '{}')).toEqual({
       bottles: 8,
     })
+  })
+
+  it('marks items as not needed, leaving them out of the progress', async () => {
+    const user = userEvent.setup()
+    renderWithI18n(<App />, 'en')
+    const card = screen.getByTestId('item-bottle-warmer')
+    const skip = within(card).getByRole('button', { name: 'Don’t need: Bottle warmer' })
+
+    await user.click(skip)
+    expect(skip).toHaveAttribute('aria-pressed', 'true')
+    expect(card).toHaveClass('is-skipped')
+    expect(screen.getByText(`You have 0 of ${items.length - 1}`)).toBeInTheDocument()
+    expect(JSON.parse(window.localStorage.getItem(SKIPPED_STORAGE_KEY) ?? '[]')).toEqual([
+      'bottle-warmer',
+    ])
+
+    // Ticking it after all means it is needed again.
+    await user.click(within(card).getByText(en.ownedShort))
+    expect(skip).toHaveAttribute('aria-pressed', 'false')
+    expect(card).toHaveClass('is-owned')
+    expect(screen.getByText(`You have 1 of ${items.length}`)).toBeInTheDocument()
   })
 
   it('carries ticks over from the old checklist format', () => {

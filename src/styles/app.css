@@ -972,11 +972,13 @@
   z-index: 3;
 }
 
-.item-card.is-owned {
+.item-card.is-owned,
+.item-card.is-skipped {
   opacity: 0.6;
 }
 
-.item-card.is-owned:hover {
+.item-card.is-owned:hover,
+.item-card.is-skipped:hover {
   opacity: 1;
 }
 
@@ -1006,6 +1008,10 @@
 
 .item-card.is-owned .item-card__media img {
   filter: var(--photo-filter) grayscale(0.7);
+}
+
+.item-card.is-skipped .item-card__media img {
+  filter: var(--photo-filter) grayscale(1);
 }
 
 .item-card__media--empty {
@@ -1064,6 +1070,13 @@
 .item-card.is-owned .item-card__name {
   text-decoration: line-through;
   text-decoration-color: var(--success);
+  text-decoration-thickness: 2px;
+}
+
+.item-card.is-skipped .item-card__name {
+  color: var(--text-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--text-3);
   text-decoration-thickness: 2px;
 }
 
@@ -1219,14 +1232,69 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Two rows on every card so they line up: "I have it", then "don't need" + Skroutz. */
 .item-card__footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  flex-direction: column;
+  gap: 8px;
   margin-top: auto;
   padding-top: 12px;
   border-top: 1px solid var(--border);
+}
+
+.item-card__own {
+  display: flex;
+}
+
+.item-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* "I don't need it": a quiet toggle that turns solid when pressed. */
+.skip-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 12px 0 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-3);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: var(--cursor-pointer);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s var(--ease);
+}
+
+.skip-toggle:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.skip-toggle:active {
+  transform: scale(0.97);
+}
+
+.skip-toggle[aria-pressed='true'] {
+  border-color: var(--text-2);
+  background: var(--text-2);
+  color: var(--surface);
+}
+
+.skip-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* "I have it" for one-off items: the whole pill is the hit area. */
@@ -3372,6 +3440,10 @@
     min-height: 44px;
   }
 
+  .skip-toggle {
+    min-height: 36px;
+  }
+
   .qty__button {
     width: 38px;
     height: 38px;
@@ -3437,6 +3509,7 @@
   .hint__button,
   .hint__bubble,
   .qty-tip,
+  .skip-toggle,
   .arrow-link,
   .skip-link,
   .site-footer,

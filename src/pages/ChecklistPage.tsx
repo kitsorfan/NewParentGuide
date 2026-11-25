@@ -26,7 +26,9 @@ interface Props extends OwnedItems {
 
 export function ChecklistPage({
   counts,
+  skipped,
   setCount,
+  setSkipped,
   clear,
   filters,
   onFiltersChange,
@@ -51,6 +53,7 @@ export function ChecklistPage({
       <BudgetSummary
         items={items}
         counts={counts}
+        skipped={skipped}
         referenceTotal={REFERENCE_ORDER_TOTAL}
         referenceCount={referenceOrder.length}
         onClearOwned={clear}
@@ -79,7 +82,9 @@ export function ChecklistPage({
             allItems={itemsByCategory.get(category.id) ?? []}
             references={references}
             counts={counts}
+            skipped={skipped}
             onCountChange={setCount}
+            onSkipChange={setSkipped}
           />
         )
       })}

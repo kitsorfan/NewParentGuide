@@ -5,6 +5,7 @@ export interface ItemFilters {
   readonly query: string
   /** Empty means "all priorities". */
   readonly priorities: readonly Priority[]
+  /** Show only what is still missing: hide items the user has enough of or doesn't need. */
   readonly hideOwned: boolean
 }
 
@@ -16,6 +17,7 @@ export const DEFAULT_FILTERS: ItemFilters = {
 
 export interface FilterContext {
   readonly owned: ReadonlySet<string>
+  readonly skipped: ReadonlySet<string>
   readonly references: ReadonlyMap<string, ReferencePurchase>
 }
 
@@ -42,11 +44,11 @@ export function matchesQuery(item: Item, query: string, reference?: ReferencePur
 export function filterItems(
   items: readonly Item[],
   filters: ItemFilters,
-  { owned, references }: FilterContext,
+  { owned, skipped, references }: FilterContext,
 ): Item[] {
   return items.filter((item) => {
     if (filters.priorities.length > 0 && !filters.priorities.includes(item.priority)) return false
-    if (filters.hideOwned && owned.has(item.id)) return false
+    if (filters.hideOwned && (owned.has(item.id) || skipped.has(item.id))) return false
     return matchesQuery(item, filters.query, references.get(item.id))
   })
 }

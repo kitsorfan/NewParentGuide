@@ -1,7 +1,8 @@
 import { useCallback, useMemo } from 'react'
 import { usePersistentState } from './usePersistentState'
 
-function parseIds(raw: unknown): readonly string[] | undefined {
+/** Validates a stored list of ids. */
+export function parseIds(raw: unknown): readonly string[] | undefined {
   return Array.isArray(raw) && raw.every((id) => typeof id === 'string') ? raw : undefined
 }
 

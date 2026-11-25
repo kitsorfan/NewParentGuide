@@ -1,4 +1,4 @@
-import { ArrowUpRight, Check, ChevronDown, ListChecks } from 'lucide-react'
+import { ArrowUpRight, Ban, Check, ChevronDown, ListChecks } from 'lucide-react'
 import { memo } from 'react'
 import type { Item, PhotoCredit, ReferencePurchase } from '../data/types'
 import type { Localized } from '../i18n/types'
@@ -20,7 +20,10 @@ interface Props {
   readonly features: readonly Localized[] | undefined
   /** How many of this item the user has. */
   readonly count: number
+  /** The user marked "I don't need it". */
+  readonly skipped: boolean
   readonly onCountChange: (id: string, count: number) => void
+  readonly onSkipChange: (id: string, skipped: boolean) => void
 }
 
 export const ItemCard = memo(function ItemCard({
@@ -29,7 +32,9 @@ export const ItemCard = memo(function ItemCard({
   photo,
   features,
   count,
+  skipped,
   onCountChange,
+  onSkipChange,
 }: Props) {
   const { lang, t, l } = useI18n()
   const name = l(item.name)
@@ -55,7 +60,7 @@ export const ItemCard = memo(function ItemCard({
 
   return (
     <article
-      className={`card item-card${owned ? ' is-owned' : ''}`}
+      className={`card item-card${owned ? ' is-owned' : ''}${skipped ? ' is-skipped' : ''}`}
       data-priority={item.priority}
       data-testid={`item-${item.id}`}
     >
@@ -147,17 +152,31 @@ export const ItemCard = memo(function ItemCard({
         )}
 
         <div className="item-card__footer">
-          <OwnControl item={item} name={name} count={count} onCountChange={onCountChange} />
-          <a
-            className="arrow-link"
-            href={skroutzSearchUrl(item.searchTerm)}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={interpolate(t.skroutzLinkLabel, { name })}
-          >
-            {t.skroutzLink}
-            <ArrowUpRight aria-hidden="true" size={15} />
-          </a>
+          <div className="item-card__own">
+            <OwnControl item={item} name={name} count={count} onCountChange={onCountChange} />
+          </div>
+          <div className="item-card__actions">
+            <button
+              type="button"
+              className="skip-toggle"
+              aria-pressed={skipped}
+              aria-label={interpolate(t.skipLabel, { name })}
+              onClick={() => onSkipChange(item.id, !skipped)}
+            >
+              <Ban aria-hidden="true" size={14} strokeWidth={2.25} />
+              <span aria-hidden="true">{t.skipShort}</span>
+            </button>
+            <a
+              className="arrow-link"
+              href={skroutzSearchUrl(item.searchTerm)}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={interpolate(t.skroutzLinkLabel, { name })}
+            >
+              {t.skroutzLink}
+              <ArrowUpRight aria-hidden="true" size={15} />
+            </a>
+          </div>
         </div>
       </div>
     </article>

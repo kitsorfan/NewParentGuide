@@ -37,6 +37,7 @@ import type { PageId } from '../router/routes'
 export function usePageSections(
   page: PageId,
   owned: ReadonlySet<string>,
+  skipped: ReadonlySet<string>,
   packed: ReadonlySet<string>,
   visible: readonly Item[],
 ): readonly NavSection[] {
@@ -50,7 +51,10 @@ export function usePageSections(
           ...categories
             .filter((category) => visibleCategories.has(category.id))
             .map((category) => {
-              const list = itemsByCategory.get(category.id) ?? []
+              // Items marked "don't need" drop out of the count.
+              const list = (itemsByCategory.get(category.id) ?? []).filter(
+                (item) => !skipped.has(item.id),
+              )
               const done = list.filter((item) => owned.has(item.id)).length
               return {
                 id: category.id,
@@ -112,5 +116,5 @@ export function usePageSections(
           { id: 'notes', label: t.sectionLabels.notes, icon: CircleAlert },
         ]
     }
-  }, [page, owned, packed, visible, t, l])
+  }, [page, owned, skipped, packed, visible, t, l])
 }

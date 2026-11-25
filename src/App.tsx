@@ -38,7 +38,7 @@ export function App({ today: todayOverride }: Props) {
   const { t } = useI18n()
   const route = useRoute()
   const ownedItems = useOwnedItems()
-  const { owned } = ownedItems
+  const { owned, skipped } = ownedItems
   const packedItems = usePackedItems()
   const [filters, setFilters] = useState<ItemFilters>(DEFAULT_FILTERS)
   const [birthDate, setBirthDate] = useBirthDate()
@@ -48,10 +48,10 @@ export function App({ today: todayOverride }: Props) {
   const [theme, setTheme] = useTheme()
 
   const visible = useMemo(
-    () => filterItems(items, filters, { owned, references }),
-    [filters, owned],
+    () => filterItems(items, filters, { owned, skipped, references }),
+    [filters, owned, skipped],
   )
-  const sections = usePageSections(route.page, owned, packedItems.owned, visible)
+  const sections = usePageSections(route.page, owned, skipped, packedItems.owned, visible)
   const activeSection = useScrollSpy(sections.map((section) => section.id))
 
   useEffect(() => {

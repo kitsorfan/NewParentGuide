@@ -9,6 +9,8 @@ interface Props {
   readonly items: readonly Item[]
   /** How many of each item the user has. */
   readonly counts: OwnedCounts
+  /** Items marked "don't need": left out of the progress and what is still to spend. */
+  readonly skipped: ReadonlySet<string>
   readonly referenceTotal: number
   readonly referenceCount: number
   readonly onClearOwned: () => void
@@ -17,17 +19,19 @@ interface Props {
 export function BudgetSummary({
   items,
   counts,
+  skipped,
   referenceTotal,
   referenceCount,
   onClearOwned,
 }: Props) {
   const { lang, t } = useI18n()
   const tiers = useMemo(() => budgetTiers(items), [items])
-  const remaining = useMemo(() => sumRemaining(items, counts), [items, counts])
+  const needed = useMemo(() => items.filter((item) => !skipped.has(item.id)), [items, skipped])
+  const remaining = useMemo(() => sumRemaining(needed, counts), [needed, counts])
   const tierLabels = [t.budgetEssentials, t.budgetRecommended, t.budgetAll]
-  const done = useMemo(() => completeIds(items, counts).size, [items, counts])
-  const started = Object.keys(counts).length > 0
-  const percent = items.length === 0 ? 0 : Math.round((done / items.length) * 100)
+  const done = useMemo(() => completeIds(needed, counts).size, [needed, counts])
+  const started = Object.keys(counts).length > 0 || skipped.size > 0
+  const percent = needed.length === 0 ? 0 : Math.round((done / needed.length) * 100)
 
   return (
     <section className="budget" aria-labelledby="budget-title">
@@ -64,7 +68,7 @@ export function BudgetSummary({
       <div className="progress">
         <div className="progress__text">
           <span id="progress-label" className="progress__label">
-            {interpolate(t.progressLabel, { done, total: items.length })}
+            {interpolate(t.progressLabel, { done, total: needed.length })}
           </span>
           <span className="progress__remaining">
             {interpolate(t.progressRemaining, {

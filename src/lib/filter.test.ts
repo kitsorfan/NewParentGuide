@@ -7,7 +7,8 @@ import { DEFAULT_FILTERS, filterItems, isFiltering, matchesQuery, togglePriority
 const references: ReadonlyMap<string, ReferencePurchase> = new Map(
   referenceOrder.map((purchase) => [purchase.itemId, purchase]),
 )
-const noneOwned = { owned: new Set<string>(), references }
+const none = new Set<string>()
+const noneOwned = { owned: none, skipped: none, references }
 const ids = (list: readonly { id: string }[]) => list.map((item) => item.id)
 
 describe('filterItems', () => {
@@ -49,14 +50,15 @@ describe('filterItems', () => {
     ])
   })
 
-  it('hides owned items on request', () => {
-    const owned = new Set(['bottles'])
+  it('hides owned and not-needed items on request', () => {
     const visible = filterItems(
       items,
       { ...DEFAULT_FILTERS, hideOwned: true },
-      { owned, references },
+      { owned: new Set(['bottles']), skipped: new Set(['bouncer']), references },
     )
     expect(ids(visible)).not.toContain('bottles')
+    expect(ids(visible)).not.toContain('bouncer')
+    expect(visible).toHaveLength(items.length - 2)
   })
 })
 
