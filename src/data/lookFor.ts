@@ -186,6 +186,10 @@ export const lookFor: Readonly<Partial<Record<string, readonly Localized[]>>> = 
       el: 'Θερμομονωτική θήκη για μπιμπερό, γάντζοι για το καρότσι',
       en: 'An insulated bottle pocket and pushchair clips',
     },
+    {
+      el: 'Με κρεβατάκι: σταθερή, επίπεδη βάση, κουνουπιέρα και όριο βάρους στην ετικέτα',
+      en: 'With a bed: a firm, flat base, a mosquito net and a weight limit on the label',
+    },
   ],
   footmuff: [
     {

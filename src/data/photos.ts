@@ -126,11 +126,12 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
   },
   'diaper-bag': {
     file: 'images/items/diaper-bag.webp',
-    title: 'Messenger + Diaper bag',
-    creator: 'parker yo!',
-    license: 'CC BY-SA 2.0',
-    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
-    sourceUrl: 'https://www.flickr.com/photos/lisa-parker/5625503274/',
+    title: 'Kikka Boo 2 σε 1 Κρεβάτι Ταξιδιού - Τσάντα Bear Γκρι',
+    creator: 'Skroutz.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.skroutz.gr/s/31404686/Kikka-Boo-Shoulder-Hand-Diaper-Bag-Bear-31108020045-Grey.html',
   },
   'baby-carrier': {
     file: 'images/items/baby-carrier.webp',

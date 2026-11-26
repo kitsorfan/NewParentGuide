@@ -307,18 +307,25 @@ export const items: readonly Item[] = [
     category: 'travel',
     priority: 'recommended',
     timing: 'beforeBirth',
-    name: { el: 'Τσάντα αλλαξιέρα', en: 'Changing bag' },
+    name: {
+      el: 'Τσάντα αλλαξιέρα (απλή ή που ανοίγει σε κρεβατάκι-πάρκο)',
+      en: 'Changing bag (plain, or one that unfolds into a travel bed)',
+    },
     why: {
-      el: 'Όλα τα απαραίτητα έξω από το σπίτι: πάνες, μωρομάντηλα, αλλαξιά ρούχων, μπιμπερό. Συνήθως έχει και στρωματάκι αλλαγής.',
-      en: 'Everything you need when out: nappies, wipes, spare clothes, a bottle. Usually includes a changing mat.',
+      el: 'Όλα τα απαραίτητα έξω από το σπίτι: πάνες, μωρομάντηλα, αλλαξιά ρούχων, μπιμπερό, και στρωματάκι αλλαγής. Η εκδοχή με κρεβατάκι ανοίγει σε μικρό κρεβάτι με κουνουπιέρα, πρακτικό σε συγγενείς, ταβέρνα ή παραλία.',
+      en: 'Everything you need when out: nappies, wipes, spare clothes, a bottle, and a changing mat. The bed version opens into a small bed with a mosquito net, handy at relatives’ homes, restaurants or the beach.',
     },
     tip: {
-      el: 'Ελέγξτε αν τη δίνει ήδη το καρότσι. Η τσάντα-σακίδιο αφήνει τα χέρια ελεύθερα.',
-      en: 'Check whether your travel system already includes one. A backpack style keeps hands free.',
+      el: 'Ελέγξτε αν τη δίνει ήδη το καρότσι. Η τσάντα-σακίδιο αφήνει τα χέρια ελεύθερα. Το κρεβατάκι της τσάντας έχει μαλακά πλαϊνά: μόνο για σύντομο υπνάκο με επίβλεψη, ανάσκελα, στο πάτωμα, ποτέ πάνω σε τραπέζι ή για τον ύπνο της νύχτας.',
+      en: 'Check whether your travel system already includes one. A backpack style keeps hands free. The bag’s bed has soft sides: only for short, supervised naps, on the back, on the floor, never on a table or for night sleep.',
     },
     quantity: { min: 1, max: 1 },
     unit: 'piece',
     price: { min: 18, max: 70, typical: 30 },
+    priceNote: {
+      el: 'Απλή ~18–50 €, με κρεβατάκι-πάρκο ~35–70 €.',
+      en: 'Plain ~€18–50, with a fold-out bed ~€35–70.',
+    },
     searchTerm: 'τσάντα αλλαξιέρα',
   },
   {
