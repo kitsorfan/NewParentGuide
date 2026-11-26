@@ -447,4 +447,15 @@ export const lookFor: Readonly<Partial<Record<string, readonly Localized[]>>> = 
     },
     { el: 'Χρονοδιακόπτης και ρυθμιζόμενη ένταση', en: 'A timer and adjustable volume' },
   ],
+  'growth-chart': [
+    {
+      el: 'Ξύλινο ή υφασμάτινο που κρεμιέται, για να το πάρετε μαζί αν μετακομίσετε',
+      en: 'Wooden or fabric and hung up, so it moves house with you',
+    },
+    {
+      el: 'Κλίμακα που ξεκινά χαμηλά (~50 cm) και φτάνει τα 150 cm',
+      en: 'A scale that starts low (~50 cm) and reaches 150 cm',
+    },
+    { el: 'Χώρος για ημερομηνίες και σημειώσεις', en: 'Room to write dates and notes' },
+  ],
 }

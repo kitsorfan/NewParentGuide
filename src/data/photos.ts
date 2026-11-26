@@ -638,4 +638,13 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     licenseUrl: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
     sourceUrl: 'https://collection.sciencemuseumgroup.org.uk/objects/co422192/babys-rattle-teether',
   },
+  'growth-chart': {
+    file: 'images/items/growth-chart.webp',
+    title: 'Djeco Αυτοκόλλητο Αναστημόμετρο Καμηλοπάρδαλη',
+    creator: 'Skroutz.gr',
+    license: '© All rights reserved',
+    licenseUrl: '',
+    sourceUrl:
+      'https://www.skroutz.gr/s/25204296/Djeco-Aytokollito-Anastimometro-Kamilopardali-Kitrino-04037.html',
+  },
 }

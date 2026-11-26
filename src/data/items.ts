@@ -1480,4 +1480,27 @@ export const items: readonly Item[] = [
     price: { min: 5, max: 19, typical: 8 },
     searchTerm: 'κουδουνίστρα μωρού',
   },
+  {
+    id: 'growth-chart',
+    category: 'play',
+    priority: 'optional',
+    timing: 'later',
+    name: { el: 'Αναστημόμετρο τοίχου', en: 'Wall growth chart' },
+    why: {
+      el: 'Σημειώνετε το ύψος κάθε λίγους μήνες και βλέπετε πόσο μεγάλωσε. Είναι κυρίως για όταν το παιδί στέκεται όρθιο (από ~1–2 ετών) και γίνεται ωραίο ενθύμιο.',
+      en: 'Mark the height every few months and see how much they’ve grown. It’s mostly for once your child can stand (from ~1–2 years), and it becomes a lovely keepsake.',
+    },
+    tip: {
+      el: 'Το μήκος του βρέφους το μετράει ο παιδίατρος ξαπλωτό και το γράφει στο Βιβλιάριο Υγείας Παιδιού. Το αναστημόμετρο είναι για τη χαρά της σύγκρισης, όχι για ιατρική μέτρηση.',
+      en: 'Your paediatrician measures baby’s length lying down and records it in the Child Health Booklet. The chart is for the fun of comparing, not for medical measurement.',
+    },
+    quantity: { min: 1, max: 1 },
+    unit: 'piece',
+    price: { min: 5, max: 40, typical: 15 },
+    priceNote: {
+      el: 'Υφασμάτινο ή αυτοκόλλητο ~5–20 €, ξύλινο ~20–40 €.',
+      en: 'Fabric or wall sticker ~€5–20, wooden ~€20–40.',
+    },
+    searchTerm: 'αναστημόμετρο παιδικό',
+  },
 ]
