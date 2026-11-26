@@ -253,6 +253,14 @@ export const bagGroups: readonly BagGroup[] = [
         name: { el: 'Ποδόσακος ή κουβέρτα για το κρύο', en: 'Footmuff or blanket for the cold' },
         itemId: 'footmuff',
       },
+      {
+        id: 'baby-on-board',
+        name: {
+          el: 'Σήμα «Μωρό στο αυτοκίνητο» στο πίσω τζάμι',
+          en: '“Baby on board” sign in the rear window',
+        },
+        itemId: 'baby-on-board',
+      },
     ],
   },
 ]

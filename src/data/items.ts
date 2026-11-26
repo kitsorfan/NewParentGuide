@@ -386,6 +386,32 @@ export const items: readonly Item[] = [
     price: { min: 60, max: 230, typical: 130 },
     searchTerm: 'βάση isofix',
   },
+  {
+    id: 'baby-on-board',
+    category: 'travel',
+    priority: 'optional',
+    timing: 'beforeBirth',
+    name: {
+      el: 'Σήμα «Μωρό στο αυτοκίνητο» (Baby on board)',
+      en: '“Baby on board” car sign',
+    },
+    why: {
+      el: 'Ζητά από τους οδηγούς πίσω σας να κρατούν απόσταση και να κάνουν υπομονή όταν οδηγείτε πιο αργά. Κοστίζει ελάχιστα και το χρειάζεστε από τη διαδρομή από το μαιευτήριο.',
+      en: 'It asks drivers behind you to keep their distance and be patient when you drive more slowly. It costs very little, and you’ll want it from the drive home from the hospital.',
+    },
+    tip: {
+      el: 'Βάλτε το σε σημείο που δεν κρύβει τη θέα από τον καθρέφτη. Το αυτοκόλλητο μένει στη θέση του, ενώ η βεντούζα συχνά πέφτει.',
+      en: 'Put it where it doesn’t block your view in the mirror. A sticker stays put, while a suction cup often falls off.',
+    },
+    quantity: { min: 1, max: 1 },
+    unit: 'piece',
+    price: { min: 2, max: 12, typical: 4 },
+    priceNote: {
+      el: 'Απλό με βεντούζα ~2–5 €, ξύλινο ή με σχέδιο ~8–12 €.',
+      en: 'Plain suction-cup sign ~€2–5, wooden or themed ~€8–12.',
+    },
+    searchTerm: 'σήμα baby on board αυτοκινήτου',
+  },
 
   // ───────────── Feeding ─────────────
   {

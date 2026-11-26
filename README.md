@@ -5,7 +5,7 @@ from the left sidebar (a slide-in menu on phones):
 
 | Page                     | What it covers                                                                                                                                                                                                                                                                                     |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Shopping list**        | 73 items in 9 categories, each with a **priority** (essential / recommended / optional), **quantity**, **Greek price range**, a photo, a hover hint on _why_ to buy it, a **"what to look for"** checklist, a Skroutz link, and what another parent bought in 2024. Budget totals and a tick-list. |
+| **Shopping list**        | 74 items in 9 categories, each with a **priority** (essential / recommended / optional), **quantity**, **Greek price range**, a photo, a hover hint on _why_ to buy it, a **"what to look for"** checklist, a Skroutz link, and what another parent bought in 2024. Budget totals and a tick-list. |
 | **Hospital bag**         | What to pack for the maternity hospital (documents, mum, baby, partner, trip home), ticked off and remembered, linked to the shopping list.                                                                                                                                                        |
 | **Month by month**       | What to expect from the first two weeks to the first birthday: feeding, sleep, development, care, safety, and when to call the paediatrician. Enter the birth/due date to see "you are here".                                                                                                      |
 | **Sleep guide**          | Safe sleep (the three basics, do's and don'ts, safer bed-sharing), how much sleep by age, a room-temperature/TOG chart, routines and settling, coping with crying, and when to get help. With a birth date, the baby's age band is marked.                                                         |
@@ -59,7 +59,7 @@ Share a link in a specific language with `?lang=en` or `?lang=el`, e.g. `…/?la
 ```text
 src/
   data/            ← all content: edit these to change the guide
-    items.ts             the 73 shopping-list items (text, priority, quantity, prices)
+    items.ts             the 74 shopping-list items (text, priority, quantity, prices)
     lookFor.ts           "what to look for" checklists per item
     photos.ts            photo credits (files in public/images/items/)
     referenceOrder.ts    the 2024 order from the PDF

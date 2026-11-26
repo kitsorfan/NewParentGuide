@@ -159,6 +159,14 @@ export const photos: Readonly<Partial<Record<string, PhotoCredit>>> = {
     sourceUrl:
       'https://www.bestprice.gr/item/2165056400/cybex-base-z-vasi-kathismatos-aftokinitou-isofix-mavri.html',
   },
+  'baby-on-board': {
+    file: 'images/items/baby-on-board.webp',
+    title: 'Babyonboard',
+    creator: 'Vinu raj at Malayalam Wikipedia',
+    license: 'Public domain',
+    licenseUrl: '',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Babyonboard.jpg',
+  },
   bottles: {
     file: 'images/items/bottles.webp',
     title: 'Baby Bottle',
